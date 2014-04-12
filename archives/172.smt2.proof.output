@@ -1,0 +1,29 @@
+Adding 172.smt2.proof.extra/172.trace to the CHECK Queue
+Tue Feb 5 22:41:05 EST 2013: RUN Check
+Tue Feb 5 22:41:05 EST 2013: Adding 172.smt2.proof.extra/172_1.smt2 to the SMT Queue
+Tue Feb 5 22:41:05 EST 2013: Adding 172.smt2.proof.extra/172_2.smt2 to the SMT Queue
+Tue Feb 5 22:41:05 EST 2013: RUN DREAL2:
+Run dReal: 172.smt2.proof.extra/172_1.smt2 - unsat
+0:00.00 - [conflict detected]
+Run dReal: 172.smt2.proof.extra/172_2.smt2 - unsat
+0:00.00 - [conflict detected]
+Tue Feb 5 22:41:05 EST 2013: RUN SPLIT:
+Split 172.smt2.proof.extra/172_1.trace  into 1 traces.
+Split 172.smt2.proof.extra/172_2.trace  into 1 traces.
+Adding 172.smt2.proof.extra/172_1.trace to the CHECK Queue
+Adding 172.smt2.proof.extra/172_2.trace to the CHECK Queue
+Tue Feb 5 22:41:05 EST 2013: RUN Check
+Tue Feb 5 22:41:06 EST 2013: Adding 172.smt2.proof.extra/172_1_2.smt2 to the SMT Queue
+Tue Feb 5 22:41:06 EST 2013: Adding 172.smt2.proof.extra/172_1_1.smt2 to the SMT Queue
+Tue Feb 5 22:41:06 EST 2013: RUN DREAL2:
+Run dReal: 172.smt2.proof.extra/172_1_2.smt2 - unsat
+0:00.00 - [conflict detected]
+Run dReal: 172.smt2.proof.extra/172_1_1.smt2 - unsat
+0:00.00 - [conflict detected]
+Tue Feb 5 22:41:06 EST 2013: RUN SPLIT:
+Split 172.smt2.proof.extra/172_1_2.trace  into 1 traces.
+Split 172.smt2.proof.extra/172_1_1.trace  into 1 traces.
+Adding 172.smt2.proof.extra/172_1_1.trace to the CHECK Queue
+Adding 172.smt2.proof.extra/172_1_2.trace to the CHECK Queue
+Tue Feb 5 22:41:06 EST 2013: RUN Check
+proof verified

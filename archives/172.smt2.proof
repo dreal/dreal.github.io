@@ -1,0 +1,23 @@
+Precision:0.001
+(<= (+ 6.28318 (* -1 (* 2 (* x1 (asin (* (cos 0.797) (sin (/ 3.14159 x1)))))))) (+ (+ 0.591 (* -1 (* 0.0331 x2))) 1.506))
+x1 is in: [3, 3.14];
+x2 is in: [-7, 5];
+
+[before pruning] 
+x1 is in: [3 , 3.14];
+x2 is in: [-7 , +5]
+[after pruning] 
+x1 is in: [3 , 3.13468];
+x2 is in: [-7 , -3.13797]
+
+[before pruning] 
+x1 is in: [3 , 3.13468];
+x2 is in: [-7 , -3.13797]
+[after pruning] 
+x1 is in: [3 , 3.1275];
+x2 is in: [-7 , -3.34704]
+
+[before pruning] 
+x1 is in: [3 , 3.1275];
+x2 is in: [-7 , -3.34704]
+[conflict detected]
