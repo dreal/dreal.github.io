@@ -24,4 +24,4 @@
 [People](people.md)
 
 [gimmick:math]()
-[gimmick:ForkMeOnGitHub](http://www.github.com/soonhokong/dReal)
+[gimmick:ForkMeOnGitHub](http://www.github.com/dreal/dreal)
