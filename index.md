@@ -1,7 +1,5 @@
 ---
 layout: archive
-image:
-  feature: dreal_logo_banner.svg
 permalink: /
 title: "Introduction"
 ---
@@ -11,6 +9,7 @@ title: "Introduction"
         {% include post-grid.html %}
 {% endfor %}
 </div><!-- /.tiles -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 # dReal: An SMT Solver for Nonlinear Theories of the Reals
 
