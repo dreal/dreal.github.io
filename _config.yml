@@ -18,6 +18,7 @@ permalink: /:categories/:title/
 markdown: kramdown
 kramdown:
   input: GFM
+  hard_wrap: false
 highlighter: pygments
 gems:
   - jekyll-sitemap
