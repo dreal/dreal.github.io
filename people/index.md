@@ -11,9 +11,6 @@ image:
 ads: false
 ---
 
-People
-============
-
 <img src="images/seangao.jpg" style="width: 100px;">
 [Sicun Gao][sean]
 (Postdoc Researcher, Computer Science Department, CMU)
@@ -26,19 +23,13 @@ People
 [Wei Chen][wei]
 (Master Student, Institute for Software Research, CMU)
 
-<img src="images/mark.jpg" style="width: 100px;">
-[Mark Erazo][mark]
-(Research Associate, Computer Science Department, CMU)
-
 <img src="images/ed.jpg" style="width: 100px;"> [Edmund Clarke][emc]
 (Professor, Computer Science Department, CMU)
 
 [sean]:   http://www.cs.cmu.edu/~sicung
 [soonho]: http://www.cs.cmu.edu/~soonhok
 [wei]:    http://andrew.cmu.edu/~weichen1
-[mark]:   http://www.cs.cmu.edu/directory/mark-erazo
 [emc]:    http://www.cs.cmu.edu/~emc
-
 
 Collaborators
 --------------
@@ -51,5 +42,10 @@ Collaborators
 [Bing Liu][bing]
 (Postdoc Researcher, University of Pittsburgh)
 
+<img src="images/mark.jpg" style="width: 100px;">
+[Mark Erazo][mark]
+(Research Associate, Computer Science Department, CMU)
+
 [jeremy]: http://www.andrew.cmu.edu/~avigad
 [bing]: http://www.cs.cmu.edu/~liubing
+[mark]:   http://www.cs.cmu.edu/directory/mark-erazo
