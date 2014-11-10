@@ -26,7 +26,7 @@ ads: false
 <img src="images/ed.jpg" style="width: 100px;"> [Edmund Clarke][emc]
 (Professor, Computer Science Department, CMU)
 
-[sean]:   http://www.cs.cmu.edu/~sicung
+[sean]:   http://scungao.github.io
 [soonho]: http://www.cs.cmu.edu/~soonhok
 [wei]:    http://andrew.cmu.edu/~weichen1
 [emc]:    http://www.cs.cmu.edu/~emc
