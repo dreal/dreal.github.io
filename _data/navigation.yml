@@ -1,7 +1,19 @@
 # Site navigation links
 
-- title:      Documentation
-  url:        /documentation/
+- title:      dReal
+  url:        /dReal/
+  excerpt:
+
+- title:      dReach
+  url:        /dReach/
+  excerpt:
+
+- title:      Benchmarks
+  url:        /benchmarks/
+  excerpt:
+
+- title:      Publication
+  url:        /publication/
   excerpt:
 
 - title:      Download
