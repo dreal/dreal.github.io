@@ -11,19 +11,45 @@ image:
 ads: false
 ---
 
-The Lean theorem prover is being developed by
+People
+============
 
-- [Leonardo de Moura](http://research.microsoft.com/en-us/um/people/leonardo) (Microsoft Research)
-- [Soonho Kong](http://www.cs.cmu.edu/~soonhok) (CMU)
+<img src="images/seangao.jpg" style="width: 100px;">
+[Sicun Gao][sean]
+(Postdoc Researcher, Computer Science Department, CMU)
 
-The Lean standard library is being developed by
+<img src="images/soonhokong.jpg" style="width: 100px;">
+[Soonho Kong][soonho]
+(PhD Candidate, Computer Science Department, CMU)
 
-- [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad) (CMU)
-- [Floris van Doorn](http://www.contrib.andrew.cmu.edu/~fpv/) (CMU)
-- [Leonardo de Moura](http://research.microsoft.com/en-us/um/people/leonardo) (Microsoft Research)
+<img src="images/wei.jpg" style="width: 100px;">
+[Wei Chen][wei]
+(Master Student, Institute for Software Research, CMU)
 
-Contributors
+<img src="images/mark.jpg" style="width: 100px;">
+[Mark Erazo][mark]
+(Research Associate, Computer Science Department, CMU)
 
-- [Cody Roux](http://www.andrew.cmu.edu/user/croux/) (Draper)
-- [Robert Lewis](https://www.andrew.cmu.edu/user/rlewis1/Site/Home.html) (CMU)
-- Parikshit Khanna (Indian Institute of Technology, Kanpur)
+<img src="images/ed.jpg" style="width: 100px;"> [Edmund Clarke][emc]
+(Professor, Computer Science Department, CMU)
+
+[sean]:   http://www.cs.cmu.edu/~sicung
+[soonho]: http://www.cs.cmu.edu/~soonhok
+[wei]:    http://andrew.cmu.edu/~weichen1
+[mark]:   http://www.cs.cmu.edu/directory/mark-erazo
+[emc]:    http://www.cs.cmu.edu/~emc
+
+
+Collaborators
+--------------
+
+<img src="images/jeremy.jpg" style="width: 100px;">
+[Jeremy Avigad][jeremy]
+(Professor, Department of Philosophy, CMU)
+
+<img src="images/bing.jpg" style="width: 100px;">
+[Bing Liu][bing]
+(Postdoc Researcher, University of Pittsburgh)
+
+[jeremy]: http://www.andrew.cmu.edu/~avigad
+[bing]: http://www.cs.cmu.edu/~liubing
