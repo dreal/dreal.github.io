@@ -2,18 +2,18 @@
 
 title: dReal
 description:
-logo:    dReal_logo_med.svg
+logo: lean_letter_logo_mid.svg
 teaser:
 locale:
-url: http://dreal.github.io
-# url:   http://localhost:4000
+#url: http://dreal.github.io
+url:   http://localhost:4000
 safe: true
 
 # Jekyll configuration
 
 sass:
     sass_dir: _sass
-    style: compressed
+#    style: compressed
 permalink: /:categories/:title/
 markdown: kramdown
 kramdown:
@@ -25,16 +25,8 @@ gems:
 
 
 # Site owner
-owner:
-  name:
-  email:
-  twitter:
-  google:
-  ad-client:
-  ad-slot:
-  bio:
-  avatar:
-disqus-shortname:
-
+owner: 
+  name: Soonho Kong
+  email: soonhok@cs.cmu.edu
 
 exclude: ["vendor", "lib", "tutorial", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "*.sublime-project", "*.sublime-workspace", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "node_modules", "Gruntfile.js", "package.json"]

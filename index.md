@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /
-title: "Introduction"
+title: "dReal: An SMT Solver for Nonlinear Theories of the Reals"
 ---
 
 <div class="tiles">
@@ -9,9 +9,6 @@ title: "Introduction"
         {% include post-grid.html %}
 {% endfor %}
 </div><!-- /.tiles -->
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-# dReal: An SMT Solver for Nonlinear Theories of the Reals
 
 SMT formulas over the real numbers can encode a wide range of problems
 in theorem proving and formal verification. Such formulas are very
