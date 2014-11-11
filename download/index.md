@@ -11,7 +11,22 @@ image:
 ads: false
 ---
 
-- Windows 8
-- Linux (Ubuntu 14)
-- OSX
+Linux (Ubuntu 14)
+-----------------
+
+OS X
+----
+
+```
+brew tap dreal/dreal
+brew install --HEAD dreal
+```
+
+Windows (7 & 8)
+---------------
+
+
+Source Code
+-----------
+
 - [Source code](http://github.com/leanprover/lean/archive/master.zip)
