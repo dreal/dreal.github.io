@@ -1,24 +1,30 @@
 # Site navigation links
 
-- title:      Documentation
-  url:        /documentation/
+- title:      dReal
+  url:        /
+  excerpt:
+
+- title:      dReach
+  url:        /dReach/
+  excerpt:
+
+- title:      Benchmarks
+  url:        /benchmarks/
+
+- title:      Publication
+  url:        /publication/
   excerpt:
 
 - title:      Download
   url:        /download/
   excerpt:    "precompiled binaries"
 
-- title:      Try Lean
-  url:        https://leanprover.github.io/live/
+- title:      Try dReal
+  url:        http://dreal.cs.cmu.edu/try
   excerpt:    "in your web browser"
   image:
 
 - title:      People
-  url:        /people/
+  url:        https://github.com/orgs/dreal/people
   excerpt:    "Developers and contributors"
-  image:
-
-- title:      About
-  url:        /about/
-  excerpt:    "Introduction to Lean"
   image:
