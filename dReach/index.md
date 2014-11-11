@@ -218,10 +218,11 @@ following .smt2 file ([bouncing_ball_with_drag_10_0.smt2][bouncing_ball_with_dra
 
 Using the generated [bouncing_ball_with_drag_10_0.smt2.json] file, we can visualize a witness of \\(\delta\\)-sat case as follows:
 
+<link type="text/css" rel="stylesheet" href="/css/chart.css"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
 <div id="chart-container" style="text-align:center">
-<script type="text/javascript" src="/archives/bouncing_ball_with_drag_data.js"></script>
+<script type="text/javascript" src="data/bouncing_ball_with_drag_data.js"></script>
 <script type="text/javascript" src="/js/vis.js"></script>
 </div>
 
