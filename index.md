@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /
-title: "dReal: An SMT Solver for Nonlinear Theories of the Reals"
+title: ""
 ---
 
 <div class="tiles">

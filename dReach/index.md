@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "dReach: Reachability Analysis for Nonlinear Hybrid Systems"
+title: ""
 date:
 modified:
 excerpt:
@@ -159,12 +159,12 @@ and performs bounded model-checking.
 
 The command-line argument `-k 10` specify the unrolling depth of
 bounded model checking. The options ``--visualize`` and ``--precision=0.1``
-will be passed to dReal. 
+will be passed to dReal.
 
  * The first option `--visualize` enables **dReal** to store
 additional information to visualize the witness of \\(\delta\\)-sat result ([bouncing_ball_with_drag_10_0.smt2.json][bouncing_ball_with_drag_10_0.smt2.json]).
  * The second option `--precision` specifies the value of numerical
-perturbation \\(\delta\\) we allow. 
+perturbation \\(\delta\\) we allow.
 
 Running the above command, it first generates
 following .smt2 file ([bouncing_ball_with_drag_10_0.smt2][bouncing_ball_with_drag_10_0.smt2]):
