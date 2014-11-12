@@ -10,6 +10,10 @@ title: ""
 {% endfor %}
 </div><!-- /.tiles -->
 
+**dReal** is an SMT solver for formulas over the reals that can handle
+various nonlinear elementrary functions in the framework of
+\\(\delta\\)-complete decision procedures. 
+
 SMT formulas over the real numbers can encode a wide range of problems
 in theorem proving and formal verification. Such formulas are very
 hard to solve when nonlinear functions are involved.
@@ -32,9 +36,7 @@ of scalable numerical algorithms to solve nonlinear problems, and at
 the same time provide suitable correctness guarantees for many
 correctness-critical problems. (See references below.)
 
-**dReal** is an SMT solver for formulas over the reals that can handle
-various nonlinear elementrary functions in the framework of
-\\(\delta\\)-complete decision procedures. It returns "unsat" or
+**dReal** returns "unsat" or
 "\\(\delta\\)-sat" on input formulas, where \\(\delta\\) can be
 specified by the user. When the answer is "unsat", **dReal** produces
 a proof of unsatisfiability; when "\\(\delta\\)-sat", it provides a
@@ -43,7 +45,7 @@ is satisfied. The tool is based on Interval Constraint Propagation in
 the DPLL(T) framework to handle nonlinearity, and is designed to be
 easily extendable with other numerical algorithms.
 
-**dReal** is built on the following tools: [realpaver][realpaver],
+**dReal** has benefited much from the following tools: [realpaver][realpaver],
 [opensmt][opensmt], [minisat][minisat], and [capd][capd].
 
 [realpaver]: http://pagesperso.lina.univ-nantes.fr/~granvilliers-l/realpaver/
