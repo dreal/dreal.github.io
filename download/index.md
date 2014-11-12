@@ -1,6 +1,5 @@
 ---
 layout: archive
-title: "Download"
 date:
 modified:
 excerpt:

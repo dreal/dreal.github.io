@@ -1,6 +1,5 @@
 ---
 layout: archive
-title: "Benchmarks"
 date:
 modified:
 excerpt:

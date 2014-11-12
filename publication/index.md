@@ -1,6 +1,5 @@
 ---
 layout: archive
-title: "Publication"
 date:
 modified:
 excerpt:
