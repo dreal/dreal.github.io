@@ -10,6 +10,7 @@ image:
 ads: false
 ---
 
+---
  - [Atrial Fibrillation Model](./atrial_fibrillation)
  - [Prostate Cancer](./prostate_cancer)
  - [Quadcopter Dynamics](./quad)

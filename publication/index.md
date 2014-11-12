@@ -10,6 +10,7 @@ image:
 ads: false
 ---
 
+---
  * *Satisfiability Modulo ODEs*.<br />
    [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />
    In FMCAD (Formal Methods in Computer-Aided Design) 2013 [[pdf][FMCAD13]]
