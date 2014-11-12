@@ -10,7 +10,7 @@ title: ""
 {% endfor %}
 </div><!-- /.tiles -->
 
-**dReal** is an SMT solver for formulas over the reals. It can handle formulas with a wide range of nonlinear real functions in the framework of
+**dReal** is an SMT solver for first-order logic formulas over the reals. It can handle formulas with a wide range of nonlinear real functions in the framework of
 \\(\delta\\)-complete decision procedures. 
 
 SMT formulas over the real numbers can encode a wide range of problems
