@@ -72,7 +72,7 @@ from the [Flyspeck][flyspeck] project benchmarks:
 To solve the formula using **dReal**, we first translate it into the
 following SMT2 formula ([172.smt2][172.smt2]):
 
-```smt2
+{% highlight text linenos %}
 (set-logic QF_NRA)
 (declare-fun x1 () Real)
 (declare-fun x2 () Real)
@@ -84,7 +84,7 @@ following SMT2 formula ([172.smt2][172.smt2]):
             (+ (- 0.591 (* 0.0331 x2)) (+ 0.506 1.0))))
 (check-sat)
 (exit)
-```
+{% endhighlight %}
 
 Note that we encode the range of \\(x_1\\) and \\(x_2\\) using four
 ``assert`` commands ``(assert (<= 3.0 x1)``, ``(assert (<= x1
@@ -93,10 +93,10 @@ Note that we encode the range of \\(x_1\\) and \\(x_2\\) using four
 We check the \\(\delta\\)-satisfiability of the formula using
 **dReal**:
 
-```
+{% highlight bash %}
 $ dReal 172.smt2
 unsat
-```
+{% endhighlight %}
 
 It takes less than a second to terminate with the **unsat** result.
 Recall that this **unsat** result is **exact** and does not involve
@@ -110,11 +110,11 @@ use ``--verbose`` option (the omitted result is in
 [172.smt.verbose][172.smt2.verbose]):
 
 
-```
+{% highlight bash %}
 $ dReal --verbose 172.smt2
 ...
 unsat
-```
+{% endhighlight %}
 
 ### Proof Checking
 
@@ -122,21 +122,21 @@ unsat
 \\(\delta\\)-satisfiability result. Using ``--proof`` option generates
 the proof [172.smt2.proof][172.smt2.proof].
 
-```
+{% highlight bash %}
 $ dReal --proof 172.smt
 unsat
-```
+{% endhighlight %}
 
 We also provide a *proof checker* which can validate the proof for the
 *unsat* cases. Our proof-checking process is a semi-algorithm and
 therefore its termination is not guaranteed. ``-t`` option shoud be
 used to specify the timeout in seconds.
 
-```
+{% highlight bash %}
 $ proofcheck.sh -t 30 172.smt2.proof
 ...
 proof verified
-```
+{% endhighlight %}
 
 [172.smt2.proof.output] shows that our proof checker solved 4
  subproblems in the process of checking and was able to verify the
