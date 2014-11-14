@@ -10,7 +10,8 @@ image:
 ads: false
 ---
 
----
+Installation
+============
 
 Linux (Ubuntu 14)
 -----------------
@@ -50,11 +51,18 @@ brew upgrade dreal
 
 [homebrew]: http://brew.sh/
 
-Windows (7 & 8)
----------------
 
+Binary Releases
+===============
+
+Please visit our [releases page at Github](https://github.com/dreal/dreal/releases).
 
 Source Code
------------
+===========
 
-- [Source code](http://github.com/dreal/dreal/archive/master.zip)
+You can download
+[the source code of dReal](http://github.com/dreal/dreal/archive/master.zip).
+Please read the following instructions to build dReal:
+
+ - [Build instructions for Ubuntu 12.04 / 14.04](https://github.com/dreal/dreal/blob/master/doc/ubuntu-gcc.md)
+ - [Build instructions for OS X 10.9 / 10.10](https://github.com/dreal/dreal/blob/master/doc/osx-gcc.md)
