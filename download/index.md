@@ -10,8 +10,7 @@ image:
 ads: false
 ---
 
-Installation
-============
+---
 
 Linux (Ubuntu 14)
 -----------------
