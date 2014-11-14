@@ -20,7 +20,7 @@
   excerpt:    "precompiled binaries"
 
 - title:      Try online
-  url:        http://dreal.cs.cmu.edu/try
+  url:        https://dreal.cs.cmu.edu/try
   excerpt:    "in your web browser"
   image:
 

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dReal: SMT Solver</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-extension.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://gauss.modck.cs.cmu.edu:1234/socket.io/socket.io.js" type="text/javascript" charset="utf-8"></script>
+
+    <meta charset="UTF-8">
+    <style type="text/css" media="screen">
+    #editor { 
+        position: relative;
+        height: 400px;
+    }
+    
+    button:focus {
+      outline: 0;
+    }
+
+    </style>
+    <script>
+      function add_content(str){
+        $('#output').append(str);
+      }
+      var socket = io.connect("http://gauss.modck.cs.cmu.edu:1234/");
+
+      socket.on('message', function(data) {
+        add_content(data);
+        $(document).scrollTop($(document).height());
+      });
+
+      function solve(){
+        document.getElementById('output').innerHTML = "";
+        var code = String(editor.session.doc.getAllLines()).replace(/\,/g,"\n");
+        var precision = document.getElementById('precision');
+        if(precision.value){
+          var prec = precision.value;
+        }
+        else{
+          var prec = 0.001;
+        }
+        if ($("#v-on").hasClass("active")){
+          var verbose = " -verbose";
+        }
+        else{
+          var verbose = "";
+        }        
+        if (editor.getSession().getLine(0)  == "(set-logic QF_NRA_ODE)"){
+          var viz = " -visualize";
+        }
+        else {
+          var viz = "";
+        }
+        var out = document.getElementById("output")
+        out.className = 'unhidden';
+        socket.emit('solveRequest', code, prec, verbose, viz);
+      }
+    </script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>dReal: An SMT Solver for Nonlinear Theories of the Reals
+	  <img id="ServerStatus" align="right" src="http://img.shields.io/badge/Server%20Status-Off-red.svg">
+	</h1> 
+      </div>
+     
+      <div id="editor">
+      </div>
+
+      <div class="row">
+        <div class="col-xs-1">
+          <div class="btn-group">
+            <a class="btn btn-xlg btn-primary" onclick="solve()" style="margin-top:10px; margin-right:5px; margin-bottom:10px">Solve</a>
+          </div>
+      	</div>
+        <div class="col-xs-3">
+          
+          <div class="row">
+            <form class="form-horizontal" role="form" style="margin-top:10px" onSubmit="return false;">
+              <label class="col-sm-5 control-label">Verbose</label>
+              <div class="col-sm-7">
+                <div class="btn-group btn-toggle"> 
+                  <button id="v-on" class="btn btn-sm btn-default">ON</button>
+                  <button class="btn btn-sm btn-primary active">OFF</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class ="row">
+            <form class="form-horizontal" role="form" style="margin-top:5px" onSubmit="return false;">
+              <label for="precision" class="col-sm-5 control-label">Precision</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control"  id="precision" placeholder="0.001">
+              </div>
+            </form>
+          </div>
+
+          <div class ="row">
+          <!-- For more options -->
+          </div>
+
+        </div>
+        <div class="col-xs-8">  
+        </div>
+      </div>
+    </div><!-- /.container -->    
+    <div class="container" >
+      <pre id = "output" class ="hidden"> </pre>      
+    </div><!-- /.container -->    
+
+    <script src="ace-builds/src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap-toggle.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      var editor = ace.edit("editor");
+      var code = "(set-logic QF_NRA)\n(declare-fun x1 () Real)\n(declare-fun x2 () Real)\n(assert (<= 3.0 x1))\n(assert (<= x1 3.14))\n(assert (<= -7.0 x2))\n(assert (<= x2 5.0))\n(assert (<= (- (* 2.0 3.14159265) (* 2.0 (* x1 (arcsin (* (cos 0.797) (sin (/ 3.14159265 x1)))))))\n(+ (- 0.591 (* 0.0331 x2)) (+ 0.506 1.0))))\n(check-sat)\n(exit)"
+      editor.setTheme("ace/theme/chrome");
+      editor.getSession().setMode("ace/mode/dreal");
+      editor.insert(code);
+      editor.getSession().setUseWrapMode(true);
+      editor.setShowPrintMargin(false);
+      
+      socket.on('connect', function(){
+        document.getElementById("ServerStatus").src="img/server_on.svg";
+      });
+      socket.on('disconnect', function(){
+        document.getElementById("ServerStatus").src="img/server_off.svg";
+      });
+      socket.on('file', function(data){
+        window.open("http://dreal.cs.cmu.edu/try/viz.php?file="+data.file,null,"status=yes,toolbar=no,menubar=no,location=no");
+      });
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
