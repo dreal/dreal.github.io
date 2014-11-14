@@ -11,21 +11,19 @@ ads: false
 ---
 
 ---
+Here we only list papers that explain the core techniques in dReal. 
+
+ * *Proof Generation from Delta-Decisions*.<br />
+   [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />
+   In SYNASC (International Conference on Symbolic and Numerical Algorithms for Scientific Computing) 2014
+
  * *Satisfiability Modulo ODEs*.<br />
    [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />
    In FMCAD (Formal Methods in Computer-Aided Design) 2013 [[pdf][FMCAD13]]
 
- * *dReach: Reachability Analysis for Nonlinear Hybrid Systems (Tool Paper)*.<br />
-   [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />
-   [Demo at HSCC 2013][HSCC13-demo]
-
  * *dReal: An SMT Solver for Nonlinear Theories of the Reals (Tool Paper)*.<br />
    [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />
    In CADE (Conference on Automated Deduction) 2013 [[pdf][CADE13-tool]]
-
- * *Extracting Proofs from a Numerically-Driven Decision Procedure*. <br />
-   [Sicun Gao][sean], [Soonho Kong][soonho], Michael Wang, and [Edmund Clarke][emc]<br />
-   CMU SCS Technical Report No. CMU-SCS-12-104.
 
  * *Computable Analysis, Decision Procedures, and Hybrid Automata: A New Framework for the Formal Verification of Cyber-Physical Systems*.<br />
    [Sicun Gao][sean] <br />
