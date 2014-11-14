@@ -50,6 +50,7 @@ answers:
  - "safe": \\(H\\) cannot reach \\(\mathsf{unsafe}\\) in \\(n\\) steps within time \\(T\\).
  - "\\(\delta\\)-unsafe": \\(H^{\delta}\\) can reach \\({\mathsf{unsafe}}^{\delta}\\) in \\(n\\) steps within time \\(T\\).
 
+{:.center style="text-align:center;"}
 ![dReach Big Picture](images/dReach.svg)
 
 Note that these answers are not weaker than the precise ones. When
