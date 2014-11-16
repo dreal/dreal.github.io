@@ -21,6 +21,7 @@ dReal:
 
 {% highlight bash %}
 sudo add-apt-repository ppa:dreal/dreal
+sudo apt-get update
 sudo apt-get install dreal
 {% endhighlight %}
 
