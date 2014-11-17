@@ -12,12 +12,11 @@ ads: false
 
 ---
 
-Linux (Ubuntu 14)
------------------
+Ubuntu/Debian
+-------------
 
-We provide a PPA for Ubuntu 12.04 LTS (precise) and Ubuntu 14.04. On
-those systems, run the following scripts on a terminal to install
-dReal:
+We provide a PPA for Ubuntu 12.04 LTS (precise), 14.04 LTS (trusty), and 14.14 (utopic).
+It supports i386 and amd64 architectures. On those systems, run the following scripts on a terminal to install dReal:
 
 {% highlight bash %}
 sudo add-apt-repository ppa:dreal/dreal
@@ -30,6 +29,10 @@ To upgrade dReal to the latest version, run:
 sudo apt-get update
 sudo apt-get upgrade dreal
 {% endhighlight %}
+
+[This page](https://launchpad.net/~leanprover/+archive/ubuntu/lean/+packages) provides detailed information
+about the packages. It also provides with Debian packages.
+
 
 OS X
 ----
@@ -56,6 +59,7 @@ Binary Releases
 ===============
 
 Please visit our [releases page at Github](https://github.com/dreal/dreal/releases).
+
 
 Source Code
 ===========
