@@ -10,8 +10,7 @@ image:
 ads: false
 ---
 
----
-Here we only list papers that explain the core techniques in dReal. 
+Here we only list papers that explain the core techniques in dReal.
 
  * *Proof Generation from Delta-Decisions*.<br />
    [Sicun Gao][sean], [Soonho Kong][soonho], and [Edmund Clarke][emc]<br />

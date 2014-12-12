@@ -10,8 +10,6 @@ image:
 ads: false
 ---
 
----
-
 Ubuntu/Debian
 -------------
 

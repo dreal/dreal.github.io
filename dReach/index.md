@@ -11,8 +11,6 @@ image:
 ads: false
 ---
 
----
-
 **dReach** is a tool for safety verfication of hybrid systems.
 
  It answers questions of the type: Can a hybrid system run into an unsafe region of its state space? This question can be encoded to SMT formulas, and answered by our SMT solver. **dReach** is able to handle general hyrbid systems with nonlinear differential equations and complex discrete mode-changes.
