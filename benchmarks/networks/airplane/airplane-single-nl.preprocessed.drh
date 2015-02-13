@@ -1,0 +1,205 @@
+
+
+
+[-1.5,1.5]    beta;
+[-1.5,1.5]    p;
+[-1.5,1.5]    r;
+[-1.5,1.5]    phi;
+[-1.5,1.5]    psi;
+
+[-3.1415926535897931,3.1415926535897931]    xAIL;
+[-3.1415926535897931,3.1415926535897931]    xRDR;
+[-3.1415926535897931,3.1415926535897931]    gAIL;
+[-3.1415926535897931,3.1415926535897931]    gRDR;
+[-3.1415926535897931,3.1415926535897931]    gDir;
+
+[0,0.5]  tau;
+[0,0.5]  time;
+
+
+{mode 1;
+  invt: (tau >= 0);
+	(tau <= 0.5);
+  flow: 
+        d/dt[beta]    = (13.97 * 300) * (-0.02 * 180 / 3.1415926535897931 * beta + 0.021 * xAIL / 20 + 0.086 * xRDR / 30) / (20500.0 * 111.64) - r + (111.64 / 9.80555) * cos(beta) * sin(phi);
+	d/dt[p]       = (-0.770 * r + 0.02755 * p) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.055E-4 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.642E-6 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[r]       = (-0.7336 * p - 0.02755 * r) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.642E-6 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.587E-5 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[phi]     = p;
+	d/dt[psi]     = (9.80555 / 111.64) * (sin(phi) / cos(phi));
+        d/dt[xAIL]    = 0.25;
+        d/dt[xRDR]    = 0.5;
+	d/dt[gAIL]    = 0;
+	d/dt[gRDR]    = 0;
+	d/dt[gDir]    = 0;
+        d/dt[tau]     = 1;
+  jump: 
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL >= xAIL)) ==> 
+        @1 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR' = beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL >= xAIL)) ==> 
+        @2 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL < xAIL)) ==> 
+        @3 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL < xAIL)) ==> 
+        @4 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+}
+{mode 2;
+  invt: (tau >= 0);
+	(tau <= 0.5);
+  flow: 
+        d/dt[beta]    = (13.97 * 300) * (-0.02 * 180 / 3.1415926535897931 * beta + 0.021 * xAIL / 20 + 0.086 * xRDR / 30) / (20500.0 * 111.64) - r + (111.64 / 9.80555) * cos(beta) * sin(phi);
+	d/dt[p]       = (-0.770 * r + 0.02755 * p) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.055E-4 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.642E-6 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[r]       = (-0.7336 * p - 0.02755 * r) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.642E-6 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.587E-5 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[phi]     = p;
+	d/dt[psi]     = (9.80555 / 111.64) * (sin(phi) / cos(phi));
+        d/dt[xAIL]    = 0.25;
+        d/dt[xRDR]    = -0.5;
+	d/dt[gAIL]    = 0;
+	d/dt[gRDR]    = 0;
+	d/dt[gDir]    = 0;
+        d/dt[tau]     = 1;
+  jump: 
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL >= xAIL)) ==> 
+        @1 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL >= xAIL)) ==> 
+        @2 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL < xAIL)) ==> 
+        @3 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL < xAIL)) ==> 
+        @4 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35) 
+		(gDir' = gDir) (tau' = 0));
+}
+{mode 3;
+  invt: (tau >= 0);
+	(tau <= 0.5);
+  flow: 
+        d/dt[beta]    = (13.97 * 300) * (-0.02 * 180 / 3.1415926535897931 * beta + 0.021 * xAIL / 20 + 0.086 * xRDR / 30) / (20500.0 * 111.64) - r + (111.64 / 9.80555) * cos(beta) * sin(phi);
+	d/dt[p]       = (-0.770 * r + 0.02755 * p) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.055E-4 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.642E-6 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[r]       = (-0.7336 * p - 0.02755 * r) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.642E-6 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.587E-5 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[phi]     = p;
+	d/dt[psi]     = (9.80555 / 111.64) * (sin(phi) / cos(phi));
+        d/dt[xAIL]    = -0.25;
+        d/dt[xRDR]    = 0.5;
+	d/dt[gAIL]    = 0;
+	d/dt[gRDR]    = 0;
+	d/dt[gDir]    = 0;
+        d/dt[tau]     = 1;
+  jump: 
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL >= xAIL)) ==> 
+        @1 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL >= xAIL)) ==> 
+        @2 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL < xAIL)) ==> 
+        @3 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL < xAIL)) ==> 
+        @4 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+}
+{mode 4;
+  invt: (tau >= 0);
+	(tau <= 0.5);
+  flow: 
+        d/dt[beta]    = (13.97 * 300) * (-0.02 * 180 / 3.1415926535897931 * beta + 0.021 * xAIL / 20 + 0.086 * xRDR / 30) / (20500.0 * 111.64) - r + (111.64 / 9.80555) * cos(beta) * sin(phi);
+	d/dt[p]       = (-0.770 * r + 0.02755 * p) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.055E-4 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.642E-6 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[r]       = (-0.7336 * p - 0.02755 * r) * r * (sin(phi) / cos(phi)) + (13.97 * 30 * 300) * (1.642E-6 * (-0.0008 * 180 / 3.1415926535897931 * beta + 0.05 * xAIL / 20 + 0.013 * xRDR / 30) + 1.587E-5 * (0.02 * 180 / 3.1415926535897931 * beta + -0.01 * xAIL / 20 + -0.04 * xRDR / 30));
+	d/dt[phi]     = p;
+	d/dt[psi]     = (9.80555 / 111.64) * (sin(phi) / cos(phi));
+        d/dt[xAIL]    = -0.25;
+        d/dt[xRDR]    = -0.5;
+	d/dt[gAIL]    = 0;
+	d/dt[gRDR]    = 0;
+	d/dt[gDir]    = 0;
+        d/dt[tau]     = 1;
+  jump: 
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL >= xAIL)) ==> 
+        @1 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL >= xAIL)) ==> 
+        @2 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR >= xRDR) (gAIL < xAIL)) ==> 
+        @3 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+
+        (and (tau = 0.5) (gRDR < xRDR) (gAIL < xAIL)) ==> 
+        @4 (and (beta' = beta) (p'    = p)    (r'    = r)    (phi' = phi)  (psi' = psi)
+                (xAIL' = xAIL) (xRDR' = xRDR) 
+		(gAIL' = (gDir - psi*180/3.14) * 0.5)
+		(gRDR'= beta * 0.35)
+		(gDir' = gDir) (tau' = 0));
+}
+
+
+init: @1 (and (beta = 0) (p = 0)    (r = 0)    (phi = 0)  (psi = 0)
+              (0.5 < gDir) (gDir < 0.7)
+	      (xAIL = 0) (xRDR = 0) (gAIL = 0) (gRDR = 0) (tau = 0));
+goal: @1 (and (abs(beta) > 0.2)); 
+      @2 (and (abs(beta) > 0.2)); 
+      @3 (and (abs(beta) > 0.2)); 
+      @4 (and (abs(beta) > 0.2));
+
