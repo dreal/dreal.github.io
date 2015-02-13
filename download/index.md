@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get upgrade dreal
 {% endhighlight %}
 
-[This page](https://launchpad.net/~leanprover/+archive/ubuntu/lean/+packages) provides detailed information
+[This page](https://launchpad.net/~dreal/+archive/ubuntu/dreal/+packages) provides detailed information
 about the packages. It also provides with Debian packages.
 
 
