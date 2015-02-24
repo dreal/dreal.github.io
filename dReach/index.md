@@ -72,11 +72,11 @@ Consider the following standard bouncing-ball example with the
 
 We model this example as the following hybrid system model ([bouncing_ball_with_drag.drh][bouncing_ball_with_drag.drh]):
 
-[bouncing_ball_with_drag.drh]: archives/bouncing_ball_with_drag.drh
+[bouncing_ball_with_drag.drh]: https://github.com/dreal/dreal/blob/master/benchmarks/hybrid_systems/bouncing_ball/bouncing_ball_with_drag.drh
 
 {% highlight text linenos %}
-#define D 0.45
-#define K 0.9
+#define D 0.1
+#define K 0.95
 [0, 15] x;
 [9.8] g;
 [-18, 18] v;
@@ -89,7 +89,7 @@ We model this example as the following hybrid system model ([bouncing_ball_with_
         (x >= 0);
   flow:
         d/dt[x] = v;
-        d/dt[v] = -g + (- D * v ^ 1);
+        d/dt[v] = -g + D * v^2;
   jump:
         (x = 0) ==> @2 (and (x' = x) (v' = - K * v));
 }
@@ -100,7 +100,7 @@ We model this example as the following hybrid system model ([bouncing_ball_with_
         (x >= 0);
   flow:
         d/dt[x] = v;
-        d/dt[v] = -g + (- D * v ^ 1);
+        d/dt[v] = -g - D * v^2;
   jump:
         (v = 0) ==> @1 (and (x' = x) (v' = v));
 }
@@ -146,10 +146,10 @@ goal:
 Our tool **dReach** takes in a hybrid system description (.drh) and unrolling bound \\(k\\),
 and performs bounded model-checking.
 
-    $ dReach -k 10 bouncing_ball.drh --visualize --precision=0.1
+    $ dReach -k 10 -l 10 bouncing_ball.drh --visualize --precision=0.1
 
-The command-line argument `-k 10` specify the unrolling depth of
-bounded model checking. The options ``--visualize`` and ``--precision=0.1``
+The command-line argument `-k 10` specifies the upper bound on the unrolling depth of
+bounded model checking, and the optional `-l 10` specifies the lower bound. The options ``--visualize`` and ``--precision=0.1``
 will be passed to dReal.
 
  * The first option `--visualize` enables **dReal** to store
