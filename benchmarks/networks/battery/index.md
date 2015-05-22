@@ -14,7 +14,7 @@ ads: false
 There are two fully charged batteries, and a control system 
 switches load between these batteries to achieve longer lifetime
 out of the batteries.
-Each battery $i$ involves three modes \\(switchedOn\\), \\(switchedOff\\), 
+Each battery \\(i\\) involves three modes \\(switchedOn\\), \\(switchedOff\\), 
 and \\(dead\\).
 
 ## Dynamics
@@ -22,7 +22,35 @@ and \\(dead\\).
 The dynamics of the battery charge is expressed by the following differential equations 
 for different modes:
 
-![Differential-equations](battery.png)
+\begin{equation}
+(\mbox{on})
+\left[
+\begin{aligned}
+\dot{d}_i &= L / c  - k \cdot d_i
+\\\\\\
+\dot{g}_i &= - L
+\end{aligned}
+\right],
+\qquad
+(\mbox{off})
+\left[
+\begin{aligned}
+\dot{d}_i &= - k \cdot d_i
+\\\\\\
+\dot{g}_i &= 0
+\end{aligned}
+\right],
+\qquad
+(\mbox{dead})
+\left[
+\begin{aligned}
+\dot{d}_i &= 0
+\\\\\\
+\dot{g}_i &= 0
+\end{aligned}
+\right],
+\end{equation}
+
 
 with variable \\(d_i\\) its kinetic energy difference,
 variable \\(g_i\\) its total charge,
