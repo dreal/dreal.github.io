@@ -110,7 +110,6 @@ python thermostat-double-p.py 2 > thermostat-double-p_2.smt2
 dReal thermostat-double-p_2.smt2
 ```
 
-(Note that \\(k = 1\\) is used for inductive analysis).
 For the **dReach** scripts, we use the option  `-k N -l N` to set both lower and upper bound to \\(N\\).
 For example, for the double thermostat dReach model, we can set \\(N = 2\\) using the following command:
 
@@ -183,7 +182,7 @@ and \\(x_i \in I\\) always holds
 if \\(x_i \in I'\\) at the beginning of each round.
 
 In this analysis, we also take into account local clock skews (bounded by \\(\epsilon > 0 \\), input sampling time \\(t_I\\), and actuator response time \\(t_R\\) for each thermostats. That is, each controller begins its \\(i\\)-th period at time \\(u_0 \in (iT - \epsilon, iT + \epsilon)\\),
-reads the current temperature at time \\(u_0 + t_I\\), and changes the status of its actuator at time \\(u_0 + t_R\\). 
+reads the current temperature at time \\(u_0 + t_I\\), and changes the switch of the thermostat at time \\(u_0 + t_R\\). 
 
 We have used the parameters 
 \\(K = 0.015\\), 
@@ -210,13 +209,17 @@ the formula stating that if \\(x_k \in I'\\) at the beginning of each period,
 then \\(x_k \in I'\\) at the end of the period,
 provided that both \\(x\_{i-1} \in I\\) and \\(x\_{i+1} \in I\\) always hold
 (given by user-defined precision in **dReal3**).
-The other SMT files contain
+The following three SMT files contain
 the negations of the formulas stating
 that \\(x_i \in I\\) always holds
 for each stage if \\(x_i \in I'\\) at the beginning of each round.
+The last SMT2 file shows an counterexample of the compositional condition when \\(\epsilon = 150\,\mathrm{ms}\\).
 
 * [compositional condition](thermostat-comp-OK.smt2)
 * [sampling stage](thermostat-comp-OK_1_0.smt2) 
 * [response stage](thermostat-comp-OK_2_0.smt2)
 * [wait stage](thermostat-comp-OK_3_0.smt2)
+* [compositional counterexample](thermostat-comp-ERR.smt2)
+
+
 
