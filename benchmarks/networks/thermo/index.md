@@ -13,9 +13,9 @@ ads: false
 
 
 We consider a network of classical thermostat hybrid automata.
-A number of rooms are interconnected by open doors,
-and the temperature of each room is separately controlled by each thermostat
-that turns its heater on and off.
+A number of rooms are interconnected by open doors.
+The temperature of each room is separately controlled by its own
+thermostat controller that turns the heater on and off.
 
 ## Dynamics
 
@@ -23,28 +23,37 @@ The temperature of each room depends on
 the mode \\(m \in \\{on, off\\}\\) of the heater  and the temperatures of the other rooms.
 E.g., for three rooms \\(I = \\{0,1,2\\}\\), 
 the temperature \\(x_i\\) of room \\(i \in I\\)
-changes according to the differential equations:
+changes according to the ordinary differential equations:
 
-![Differential-equations](thermo.png)
 
-where \\(K_i, h_i \in \mathbb{R}\\) are constants depending on
-the size of room \\(i\\) and the power of the heater, respectively,
-and \\(k_i^j \in \mathbb{R}\\) is determined by the size of the open door between rooms \\(i\\) and \\(j\\).
+\begin{aligned}
+\dot{x}_i &= K_i (h_i - ((1- 2 c) x_i + c x\_{i-1} + c x\_{i+1})) &&\mbox{if}\; m_i = m\_\texttt{on}
+\\\\\\
+\dot{x}_i &= - K_i ((1- 2 c) x_i + c x\_{i-1} + c x\_{i+1}) && \mbox{if}\; m_i = m\_\texttt{off}
+\end{aligned}
+
+where 
+\\(K_i, h_i \in \mathbb{R}\\) are constants depending on
+the size of room \\(i\\) and the heater's power, respectively,
+and \\(c \in \mathbb{R}\\) is determined by the size of the open door.
 
 
 In this model,
-every thermostat controller synchronously performs its discrete transitions.
-For each second, 
-the heater is turned on if \\(x_i \leq T_m\\),
-and turned off if \\(x_i > T_M\\).
-To keep track of each one-second period,
-every automaton has a *shared* timer variable \\(\tau\\)
-with the flow condition \\(\dot{\tau} = 1\\).
+every thermostat controller synchronously performs its transitions
+for each period \\(T = 1\,\mathrm{s}\\).
+In each transition, a controller turns on the heater 
+ if \\(x_i \leq T_m\\),
+and turns it  off if \\(x_i > T_M\\).
+
+The safety property is that the temperature of each room
+is in the range \\(I = [T_m - \eta, T_M + \eta]\\)
+for a certain \\(\eta > 0 \\).
+That is, \\(\mathit{safe}(T_M,T_m,\eta) = \wedge_i x_i \in I\\)
 
 
-## Benchmarks
+## Bounded Reachability
 
-We consider the cases of networks of two and three thermostats
+We first consider the cases of networks of two and three thermostats
 with the parameters
 \\(K_1 = 0.015\\), 
 \\(K_2 = 0.045\\), 
@@ -53,20 +62,16 @@ with the parameters
 \\(h_2 = 200\\),
 \\(h_3 = 300\\),
 \\(k_1^2 = k_2^1 = 0.01\\),
-\\(k_2^3 = k_3^2 = 0.05\\),
-\\(k_1^3 = k_3^1 = 0.02\\),
-\\(T_m = T_M = 20\\),
-and the initial condition \\(\wedge_i 19 < x_i < 21\\).
-We have performed bounded model checking up to \\(k = 5\\)
-for \\(\mathit{safe}_t = \wedge_i 15 < x_i < 25\\) 
-(the reachability of \\(\neg\mathit{safe}_t\\) unsat)
-and \\(\mathit{safe}_f = \wedge_i 19 < x_i < 21\\) 
-(the reachability of \\(\neg\mathit{safe}_f\\) sat).
+\\(k_2^3 = k_3^2 = 0.05\\) and
+\\(k_1^3 = k_3^1 = 0.02\\).
 
-We have also performed 
-inductive analysis 
-to verify that the property \\(\mathit{safe} = \wedge_{i} 11 < x_i < 29\\)
-holds at the end \\(\tau > 0.99\\) of each period.
+We have performed bounded model checking up to \\(k = 5\\)
+from the initial condition \\(\wedge_i 19 < x_i < 21\\),
+for \\(\mathit{safe}_t = \mathit{safe}(20,20,5)\\) 
+(the reachability of \\(\neg\mathit{safe}_t\\) unsat)
+and \\(\mathit{safe}_f = \mathit{safe}(20,20,1)\\) 
+(the reachability of \\(\neg\mathit{safe}_f\\) sat)
+using a vertion 2 of **dReal**.
 We set a timeout of 30 hours for the experiments.
 
 
@@ -92,17 +97,7 @@ We set a timeout of 30 hours for the experiments.
 |----------------------------|---------|----------|-----------|-----------|-----------|
 
 
-|----------------------------|---------|----------|
-|Benchmark (Inductive)       | new     | standard |
-|----------------------------|---------|----------|
-|Double                      | 2.23 s  | 215.15 s |
-|----------------------------|---------|----------|
-|Triple                      | 91.65 s | -        |
-|----------------------------|---------|----------|
-
-
-
-## Files
+#### Files
 
 To generate SMT files for this model in the new/standard encodings, we have developed a simple python script.
 For example, 
@@ -124,7 +119,7 @@ dReach -k 2 -l 2 thermostat-double.drh
 ```
 
 The following are the python scripts (to generate SMT files) and the dReach models for the 
-networked thermostat models
+networked thermostat models.
 
 * SMT generation script: [gen.py](../gen.py)
 * Two networked thermostats
@@ -134,8 +129,6 @@ networked thermostat models
     * Sat:    [New encoding](thermostat-double-p-sat.py),
               [Standard encoding](thermostat-double-sat.py), 
               [dReach script](thermostat-double-sat.drh)
-    * Inductive: [New encoding](thermostat-double-ind-p.py),
-                 [Standard encoding](thermostat-double-ind.py)
 
 * Three networked thermostats
     * Unsat:  [New encoding](thermostat-triple-p.py),
@@ -144,7 +137,86 @@ networked thermostat models
     * Sat:    [New encoding](thermostat-triple-p-sat.py),
               [Standard encoding](thermostat-triple-sat.py), 
               [dReach script](thermostat-triple-sat.drh)
+
+
+
+## Inductive analysis
+
+We have performed 
+inductive analysis 
+to verify that the property \\(\mathit{safe}(20,20,9)\\)
+holds at the end \\(\tau > 0.99\\) of each period.
+
+|----------------------------|---------|----------|
+|Benchmark (Inductive)       | new     | standard |
+|----------------------------|---------|----------|
+|Double                      | 2.23 s  | 215.15 s |
+|----------------------------|---------|----------|
+|Triple                      | 91.65 s | -        |
+|----------------------------|---------|----------|
+
+#### Files
+
+The same python scripts are used with \\(k = 1\\) for inductive analysis.
+The following are the python scripts (to generate SMT files) for the 
+networked thermostat models.
+
+* Two networked thermostats
+    * Inductive: [New encoding](thermostat-double-ind-p.py),
+                 [Standard encoding](thermostat-double-ind.py)
+
+* Three networked thermostats
     * Inductive: [New encoding](thermostat-triple-ind-p.py),
                  [Standard encoding](thermostat-triple-ind.py)
 
+
+## Compositional analysis
+
+We have then verified the safety property \\(\forall t.\; x_i \in I\\)
+for  any number of interconnected thermostat controllers
+by inductive and compositional analysis.
+For a subinterval 
+\\(I' = [T_m - \eta', T_M + \eta']\subseteq I\\),
+provided that both \\(x\_{i-1} \in I\\) and \\(x\_{i+1} \in I\\) always hold,
+we show that \\(x_i \in I'\\) is an inductive condition,
+and \\(x_i \in I\\) always holds
+if \\(x_i \in I'\\) at the beginning of each round.
+
+In this analysis, we also take into account local clock skews (bounded by \\(\epsilon > 0 \\), input sampling time \\(t_I\\), and actuator response time \\(t_R\\) for each thermostats. That is, each controller begins its \\(i\\)-th period at time \\(u_0 \in (iT - \epsilon, iT + \epsilon)\\),
+reads the current temperature at time \\(u_0 + t_I\\), and changes the status of its actuator at time \\(u_0 + t_R\\). 
+
+We have used the parameters 
+\\(K = 0.015\\), 
+\\(h = 100\\),
+\\(c = 0.01\\),
+\\(T_M = 21\\), 
+\\(T_m = 19\\),
+\\(\eta = 3\\), and
+\\(\eta' = 2\\).
+For \\(\epsilon = 2\,\mathrm{ms}\\),
+\\(t_I = 10\,\mathrm{ms}\\),
+and \\(t_R = 200\,\mathrm{ms}\\),
+we have proved the compositional safety property 
+for any number of thermostats,
+in 2.6 seconds using **dReal3** with precision \\(\delta = 0.001\\).
+ 
+
+#### Files
+
+The following SMT2 files contains the SMT formulas used for the compositional analysis. Both are negated formulas for compositional conditions, and we check the unsatisfiability of those formulas.
+
+The first SMT file contains the negation of 
+the formula stating that if \\(x_k \in I'\\) at the beginning of each period,
+then \\(x_k \in I'\\) at the end of the period,
+provided that both \\(x\_{i-1} \in I\\) and \\(x\_{i+1} \in I\\) always hold
+(given by user-defined precision in **dReal3**).
+The other SMT files contain
+the negations of the formulas stating
+that \\(x_i \in I\\) always holds
+for each stage if \\(x_i \in I'\\) at the beginning of each round.
+
+* [compositional condition](thermostat-comp-OK.smt2)
+* [sampling stage](thermostat-comp-OK_1_0.smt2) 
+* [response stage](thermostat-comp-OK_2_0.smt2)
+* [wait stage](thermostat-comp-OK_3_0.smt2)
 
