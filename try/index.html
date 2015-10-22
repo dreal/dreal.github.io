@@ -36,7 +36,7 @@
 
       function solve(){
         document.getElementById('output').innerHTML = "";
-        var code = String(editor.session.doc.getAllLines()).replace(/\,/g,"\n");
+        var code = editor.session.doc.getAllLines().join('\n');
         var precision = document.getElementById('precision');
         if(precision.value){
           var prec = precision.value;
