@@ -13,11 +13,13 @@ ads: false
 Ubuntu/Debian
 -------------
 
-We provide a PPA for Ubuntu 12.04 LTS (precise), 14.04 LTS (trusty), and 14.14 (utopic).
-It supports i386 and amd64 architectures. On those systems, run the following scripts on a terminal to install dReal:
+We provide a PPA for Ubuntu 12.04 LTS (precise), 14.04 LTS (trusty),
+15.04 (vivid), and 15.10 (wily). At this time, it only supports amd64
+architectures. Run the following commands on a terminal to install
+dReal:
 
 {% highlight bash %}
-sudo apt-get install -y python-software-properties  # only for 12.04 to have add-apt-repository 
+sudo apt-get install -y python-software-properties  # only for 12.04 to have add-apt-repository
 sudo add-apt-repository -y ppa:dreal/dreal
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update
@@ -30,21 +32,29 @@ sudo apt-get update
 sudo apt-get upgrade dreal
 {% endhighlight %}
 
-[This page](https://launchpad.net/~dreal/+archive/ubuntu/dreal/+packages) provides detailed information
-about the packages. It also provides with Debian packages.
+[This page](https://launchpad.net/~dreal/+archive/ubuntu/dreal/+packages)
+provides detailed information about the packages. It also provides
+with Debian packages.
 
 
 OS X
 ----
 
-We support [homebrew][homebrew], a package manager for OSX. To install
-dReal, run the following scripts on a terminal:
+We support [homebrew][homebrew], a package manager for OSX. If you are
+running OS X 10.10 (Yosemite) or OS X 10.11 (El Capitan), please run
+the following commands on a terminal to install dReal:
 
 {% highlight bash %}
-brew tap dreal/dreal
-brew install dreal
+brew install dreal/dreal/dreal
 {% endhighlight %}
 
+If you are running an older version of OS X (<= 10.9), please run the
+following commands to build dReal:
+
+{% highlight bash %}
+brew install gcc
+brew install dreal/dreal/dreal --cc=gcc-5
+{% endhighlight %}
 
 To upgrade dReal to the latest version, run:
 
