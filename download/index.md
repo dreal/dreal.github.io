@@ -45,20 +45,24 @@ running OS X 10.10 (Yosemite) or OS X 10.11 (El Capitan), please run
 the following commands on a terminal to install dReal:
 
 {% highlight bash %}
-brew install dreal/dreal/dreal
+brew tap dreal/dreal    # tap to github.com/dreal/homebrew-dreal
+brew update
+brew install dreal
 {% endhighlight %}
 
 If you are running an older version of OS X (<= 10.9), please run the
 following commands to build dReal:
 
 {% highlight bash %}
-brew install gcc
-brew install dreal/dreal/dreal --cc=gcc-5
+brew tap dreal/dreal    # tap to github.com/dreal/homebrew-dreal
+brew update
+brew install dreal --cc=gcc-5
 {% endhighlight %}
 
 To upgrade dReal to the latest version, run:
 
 {% highlight bash %}
+brew update
 brew upgrade dreal
 {% endhighlight %}
 
