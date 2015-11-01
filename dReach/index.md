@@ -72,7 +72,7 @@ Consider the following standard bouncing-ball example with the
 
 We model this example as the following hybrid system model ([bouncing_ball_with_drag.drh][bouncing_ball_with_drag.drh]):
 
-[bouncing_ball_with_drag.drh]:https://github.com/dreal/dreal/blob/master/benchmarks/hybrid_systems/bouncing_ball/bouncing_ball.drh
+[bouncing_ball_with_drag.drh]:https://github.com/dreal/dreal3/blob/master/benchmarks/hybrid_systems/bouncing_ball/bouncing_ball.drh
 
 {% highlight text linenos %}
 #define D 0.1
