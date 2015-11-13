@@ -129,14 +129,14 @@ The following are the python scripts (to generate SMT files) and the dReach mode
 
 
 * SMT generation script: [gen.py](../gen.py)
-* Two networked water tanks
+* Two networked batteries 
     * Unsat:  [New encoding](battery-double-p.py),
               [Standard encoding](battery-double.py), 
               [dReach script](battery-double.drh)
     * Sat:    [New encoding](battery-double-p-sat.py),
               [Standard encoding](battery-double-sat.py), 
               [dReach script](battery-double-sat.drh)
-* Three networked water tanks
+* Three networked batteries
     * Unsat:  [New encoding](battery-triple-p.py),
               [Standard encoding](battery-triple.py), 
               [dReach script](battery-triple.drh)
