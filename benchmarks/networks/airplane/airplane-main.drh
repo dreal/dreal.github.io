@@ -1,0 +1,67 @@
+
+#define g           9.80555
+#define pi          3.1415926535897931
+#define m           20500.0
+#define qbw         (13.97 * 30 * 300)
+#define qw          (13.97 * 300)
+#define V           111.64
+#define c1          -0.770
+#define c2          0.02755
+#define c3          1.055E-4
+#define c4          1.642E-6
+#define c8          -0.7336
+#define c9          1.587E-5
+
+#define cy(a,r,b)   (qw * (-0.02 * 180 / pi * b + 0.021 * a * 180 / pi / 20 + 0.086 * r * 180 / pi / 30))
+#define cl(a,r,b)   (qbw * (-0.0008 * 180 / pi * b + 0.05 * a * 180 / pi / 20 + 0.013 * r * 180 / pi / 30))
+#define cn(a,r,b)   (qbw * (0.02 * 180 / pi * b + -0.01 * a * 180 / pi / 20 + -0.04 * r * 180 / pi / 30))
+
+[-1.5,1.5]  beta;
+[-1.5,1.5]  p;
+[-1.5,1.5]  r;
+[-1.5,1.5]  phi;
+[-1.5,1.5]  psi;
+
+
+[-1.5,1.5]  gPhi;
+[0.5]       gPsi;
+
+[-pi,pi]  xAIL;
+[-pi,pi]  xRDR;
+
+[0,0.06]  tau;
+[0,0.06]  time;
+
+{mode 1;
+  invt: 
+  flow: 
+        d/dt[beta]  = cy(xAIL,xRDR,beta) / (m * V) - r + (g / V) * cos(beta) * sin(phi);
+	d/dt[phi]   = p;
+	d/dt[psi]   = (g / V) * tan(phi);
+	d/dt[p]     = (c1 * r + c2 * p) * r * tan(phi) + c3 * cl(xAIL,xRDR,beta) + c4 * cn(xAIL,xRDR,beta);
+	d/dt[r]     = (c8 * p - c2 * r) * r * tan(phi) + c4 * cl(xAIL,xRDR,beta) + c9 * cn(xAIL,xRDR,beta);
+        d/dt[xAIL]  = 0;
+        d/dt[xRDR]  = 0;
+        d/dt[gPhi]  = 0;
+        d/dt[tau]   = 1;
+  jump: 
+        (and (tau = 0.06)) ==> 
+        @1 (and (beta' = beta) (phi' = phi) (psi' = psi) (p' = p) (r' = r)    
+		(abs(xAIL' - 0.3 * (gPhi' - phi)) < 0.05)
+		(abs(xRDR' - -0.3 * beta) < 0.05)
+		(gPhi' = phi + (0.1 * (gPsi - psi)))
+                (tau' = 0));
+}
+
+init: @1 (and (beta = 0) 
+              (phi = 0) 
+	      (p = 0)
+	      (r = 0) 
+              (xAIL = 0)
+	      (xRDR = 0) 
+	      (tau = 0));
+
+goal: @1 (and (tau = 0) 
+(or (beta > 0.2) (beta < -0.2))
+);
+

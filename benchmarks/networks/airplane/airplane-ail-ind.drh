@@ -1,0 +1,82 @@
+
+#define g           9.80555
+#define pi          3.1415926535897931
+
+[-pi,pi]  xL;
+[-pi,pi]  rL;
+[-pi,pi]  vL;
+[-pi,pi]  gL;
+[0,1]     tL;
+[0,1]     tLP;
+
+[0,1]  time;
+
+// input sensing
+{mode 1;
+  invt: 
+  flow: 
+        d/dt[xL]    = rL;
+	d/dt[rL]    = 0;
+	d/dt[vL]    = 0;
+	d/dt[gL]    = 0;
+        d/dt[tL]    = -1;
+        d/dt[tLP]   = -1;
+  jump: 
+        (tL = 0) ==>
+	@2 (and (xL'  = xL)  
+	        (rL'  = rL)  
+                (vL'  = xL)     // sampling the angle
+		(gL'  = gL)
+		(tL'  = 0.003)  // execution time = 0.003
+		(tLP' = tLP));
+}
+
+// transition
+{mode 2;
+  invt: 
+  flow: 
+        d/dt[xL]    = rL;
+	d/dt[rL]    = 0;
+	d/dt[vL]    = 0;
+	d/dt[gL]    = 0;
+        d/dt[tL]    = -1;
+        d/dt[tLP]   = -1;
+  jump: 
+        (tL = 0) ==>
+	@3 (and (xL'  = xL) 
+		(rL' = (gL - vL)/0.015) // set a new rate
+		(vL'  = vL)
+		(gL'  = gL)
+		(tL'  = tLP)   // wait time
+		(tLP' = tLP));
+}
+
+// wait
+{mode 3;
+  invt: 
+  flow: 
+        d/dt[xL]    = rL;
+	d/dt[rL]    = 0;
+	d/dt[vL]    = 0;
+	d/dt[gL]    = 0;
+        d/dt[tL]    = -1;
+        d/dt[tLP]   = -1;
+  jump: 
+	(tL = 0) ==>
+	@1 (and (xL'  = xL) 
+	        (rL'  = rL)  
+		(vL'  = vL) 
+		(gL'  = gL)
+		(and (0.001 <= tL') (tL' <= 0.0012))  // sample time = 0.001, max clock skew = 0.0001
+		(tLP' = 0.015));                      // period = 0.015
+}
+
+init: @1 (and (-0.5 < xL) (xL < 0.5) 
+              (-10/3 < rL) (rL < 10/3)
+              (vL = xL)
+              (-0.03 < (gL - xL)) ((gL - xL) < 0.03)
+	      (and (0.001 <= tL) (tL <= 0.0012))  // left: sample time = 0.001, max clock skew = 0.0001
+	      (tLP = 0.015));                     // left: period = 0.015
+
+goal: 
+@3 (and (abs(gL - xL) > 0.03) (tLP = 0));

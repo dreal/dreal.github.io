@@ -41,7 +41,7 @@ state_dec[0] = """
 """
 
 state_val[0] = """
-(assert (<= 0 time_{0}))  (assert (<= time_{0} 20))
+(assert (<= 0 time_{0}))  (assert (<= time_{0} 0.1))
 (assert (<= 0 tau_{0}_0)) (assert (<= tau_{0}_0 50))
 (assert (<= 0 tau_{0}_t)) (assert (<= tau_{0}_t 50))
 (assert (<= -10 d1_{0}_0)) (assert (<= d1_{0}_0 10))
@@ -86,15 +86,15 @@ cont_cond[0] = ["""
 jump_cond[0] = ["""
 (assert (= tau_{1}_0 tau_{0}_t))
 (assert (and (= d1_{1}_0 d1_{0}_t) (= g1_{1}_0 g1_{0}_t)))
-(assert (or (and (<= g1_0_t (* (- 1 0.166) d1_0_t)) 
+(assert (or (and (<= g1_{0}_t (* (- 1 0.166) d1_{0}_t)) 
                  (= mode1U_{1} false) (= mode1S_{1} false))
-            (and (>  g1_0_t (* (- 1 0.166) d1_0_t)) 
+            (and (>  g1_{0}_t (* (- 1 0.166) d1_{0}_t)) 
                  (not (and (= mode1U_{0} false) (= mode1S_{0} false)))
 	         (not (and (= mode1U_{1} false) (= mode1S_{1} false))))))
 (assert (and (= d2_{1}_0 d2_{0}_t) (= g2_{1}_0 g2_{0}_t)))
-(assert (or (and (<= g2_0_t (* (- 1 0.166) d2_0_t)) 
+(assert (or (and (<= g2_{0}_t (* (- 1 0.166) d2_{0}_t)) 
                  (= mode2U_{1} false) (= mode2S_{1} false))
-            (and (>  g2_0_t (* (- 1 0.166) d2_0_t)) 
+            (and (>  g2_{0}_t (* (- 1 0.166) d2_{0}_t)) 
                  (not (and (= mode2U_{0} false) (= mode2S_{0} false)))
 	         (not (and (= mode2U_{1} false) (= mode2S_{1} false))))))"""]
 
@@ -111,9 +111,7 @@ init_cond = """
 """
 
 goal_cond = """
-(assert (and (>= tau_{0}_t 10)
-             (not (and (= mode1U_{0} false) (= mode1S_{0} false) 
-                       (= mode2U_{0} false) (= mode2S_{0} false)))))
+(assert (and (>= tau_{0}_t 0)))
 """
 
 import sys
@@ -122,5 +120,5 @@ try:
 except:
     print("Usage:", sys.argv[0], "<Bound>")
 else:
-    generate(bound, 1, [0], 3, init_cond, goal_cond)
+    generate(bound, 1, [0], 0, init_cond, goal_cond)
 

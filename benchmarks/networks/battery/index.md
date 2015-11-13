@@ -11,7 +11,7 @@ image:
 ads: false
 ---
 
-There are two fully charged batteries, and a control system 
+There are a number of fully charged batteries, and a control system 
 switches load between these batteries to achieve longer lifetime
 out of the batteries.
 Each battery \\(i\\) involves three modes \\(switchedOn\\), \\(switchedOff\\), 
@@ -60,8 +60,8 @@ If \\(g_i > (1 - c) d_i\\),
 then battery \\(i\\) is dead.
 If battery \\(i\\) is not dead,
 then it can be either on or off.
-When both batteries are on, 
-then load to each battery is divided by \\(2\\).
+When \\(k \in \mathbb{N}\\) batteries are on, 
+then load to each battery is divided by \\(k\\).
 There is a timer variable \\(\tau\\)
 with the flow condition \\(\dot{\tau} = 1\\)
 to keep track of the elapsed time.
@@ -75,7 +75,7 @@ with the parameters
 \\(k = 0.122\\)
 and
 \\(c = 0.166\\),
-and the initial condition \\(g_1 = 8.5 \;\wedge\; d_1 = 0 \;\wedge\; g_2 = 7.5 \;\wedge\; d_2 = 0\\).
+and the initial condition \\(g_1 = 8.5 \;\wedge\; d_1 = 0 \;\wedge\; g_2 = 7.5 \;\wedge\; d_2 = 0 \;\wedge\; g_3 = 9.5 \;\wedge\; d_3 = 0\\).
 We have performed bounded model checking up to \\(k = 5\\)
 for the properties \\(\mathit{safe}_t = \tau > 10 \\) 
 (the reachability of \\(\neg\mathit{safe}_t\\) unsat)
@@ -84,17 +84,25 @@ and \\(\mathit{safe}_f = \tau > 0\\)
 We set a timeout of 30 hours for the experiments.
 
 
-|----------------------|----------|----------|-----------|-----------|-----------|
-|Benchmark (BMC)       | k=1      | k=2      | k=3       | k=4       | k=5       |
-|----------------------|----------|----------|-----------|-----------|-----------|
-| (Unsat) (new)        | 0.16 s   | 1.63 s   | 32.66 s   | 1027.05 s | 18296.20 s|
-| (Unsat) (heuristics) | 0.36 s   | 4.43 s   | 63.02 s   | 1019.79 s | 14842.02 s|
-| (Unsat) (standard)   | 4.24 s   | 1028.82 s| -         | -         | -         |
-|----------------------|----------|----------|-----------|-----------|-----------|
-| (Sat)   (new)        | 0.46 s   | 1.74 s   | 6.85 s    | 12.87 s   | 72.60 s   |
-| (Sat)   (heuristics) | 0.53 s   | 2.04 s   | 8.20 s    | 13.46 s   | 91.36 s   |
-| (Sat)   (standard)   | 0.99 s   | 2.22 s   | 9.49 s    | 22.99 s   | 44.22 s   |
-|----------------------|----------|----------|-----------|-----------|-----------|
+|-----------------------------|----------|----------|-----------|-----------|-----------|
+|Benchmark (BMC)              | k=1      | k=2      | k=3       | k=4       | k=5       |
+|-----------------------------|----------|----------|-----------|-----------|-----------|
+| Double (Unsat) (new)        | 0.13 s   | 0.87 s   | 6.68 s    |   53.13 s |   315.16 s|
+| Double (Unsat) (heuristics) | 0.36 s   | 4.48 s   | 35.87 s   |  257.22 s |  1261.14 s|
+| Double (Unsat) (non-modular)| 1.95 s   | 746.37 s | -         |  -        |  -        |
+|-----------------------------|----------|----------|-----------|-----------|-----------|
+| Double (Sat)   (new)        | 0.46 s   | 2.59 s   |    6.52 s |   12.08 s |   25.77 s |
+| Double (Sat)   (heuristics) | 0.84 s   | 56.38 s  | 3885.32 s | 6564.96 s | 1483.22 s |
+| Double (Sat)   (non-modular)| 1.03 s   | 2.12 s   |    9.49 s |   14.82 s |   33.26 s |
+|-----------------------------|----------|----------|-----------|-----------|-----------|
+| Triple (Unsat) (new)        | 0.53 s   |   7.28 s |   37.46 s |  123.31 s |  310.58 s |
+| Triple (Unsat) (heuristics) | 4.46 s   | 237.94 s | 4321.21 s | -         | -         |
+| Triple (Unsat) (non-modular)| 4.24 s   | -        | -         | -         | -         |
+|-----------------------------|----------|----------|-----------|-----------|-----------|
+| Triple (Sat)   (new)        |  1.37 s  |  7.12 s  | 27.35 s   |  60.30 s  | 130.11 s  |
+| Triple (Sat)   (heuristics) |  2.73 s  |  12.43 s | 24.35 s   |  54.09 s  | 136.78 s  |
+| Triple (Sat)   (non-modular)| 55.70 s  | 287.37 s | -         | -         | 659.98 s  |
+|-----------------------------|----------|----------|-----------|-----------|-----------|
 
 
 ## Files
@@ -121,9 +129,17 @@ The following are the python scripts (to generate SMT files) and the dReach mode
 
 
 * SMT generation script: [gen.py](../gen.py)
-* Unsat:  [New encoding](battery-double-p.py),
-          [Standard encoding](battery-double.py), 
-          [dReach script](battery-double.drh)
-* Sat:    [New encoding](battery-double-p-sat.py),
-          [Standard encoding](battery-double-sat.py), 
-          [dReach script](battery-double-sat.drh)
+* Two networked water tanks
+    * Unsat:  [New encoding](battery-double-p.py),
+              [Standard encoding](battery-double.py), 
+              [dReach script](battery-double.drh)
+    * Sat:    [New encoding](battery-double-p-sat.py),
+              [Standard encoding](battery-double-sat.py), 
+              [dReach script](battery-double-sat.drh)
+* Three networked water tanks
+    * Unsat:  [New encoding](battery-triple-p.py),
+              [Standard encoding](battery-triple.py), 
+              [dReach script](battery-triple.drh)
+    * Sat:    [New encoding](battery-triple-p-sat.py),
+              [Standard encoding](battery-triple-sat.py), 
+              [dReach script](battery-triple-sat.drh)

@@ -201,3 +201,26 @@ The following are the python scripts (to generate SMT files) and the dReach mode
               dReach scripts([k=4n](airplane-multi-sat.drh), [k=4n+2](airplane-multi-1-sat.drh))
 
 
+## Compositional Bounded Reachability
+
+We have applied compositional reasoning to conduct a bounded reachability analysis in a compositional way. Assuming that the goal angles chosen by the main controller are close to the current surface angles of the ailerons and the rudder (i.e., the differences are less than \\(0.05\\)), we have performed bounded model checking up to \\(k = 20\\) from the initial condition \\((\beta, \phi, p, r, \delta_a, \delta_r) = \vec{0}\\) for the safety property \\(\lvert\beta\rvert \leq 0.2 \\) only using the main controller, which took less than 2 minutes. 
+
+The assumptions are then proved by using compositional inductive reasoning. For example, for the left aileron, we show that if the difference between the goal \\(g_L\\) angle and the current angle \\(v_L\\) is less than \\(0.03\\) at the beginning of the period, then the difference between the goal angle \\(g_L\\) and the surface angle \\(x_L\\) is: (i) always less than \\(0.05\\) during the period, and (ii) less than \\(0.03\\) again at the end of the period, taking into account the maximal local clock skew \\(\epsilon < 0.0001\\), sampling times \\(0.001\\), and actuator response times \\(0.003\\) (which took about 2 hours).
+
+#### Files
+
+The following are the dReach scripts for the compositional bounded reachability analysis. The following commands are used for the analysis:
+
+```
+dReach -k 20 airplane-main.drh
+dReach -k 2 airplane-ail.drh
+dReach -k 2 airplane-ail-ind.drh
+```
+
+The first file contains the negation of the formula stating that \\(\lvert\beta\rvert \leq 0.2 \\) for the main controller, provided the assumptions. 
+ The other files are regarding the compositional inductive analysis of the left aileron (the other cases are similar). The second file contains the negation of the formula statings that if \\( \lvert g_L - v_L \rvert < 0.03\\) at the beginning of the period, then \\( \lvert g_L - x_L \rvert < 0.05\\) during the period. The third file contains the negation of the formula stating that if \\( \lvert g_L - v_L \rvert < 0.03\\) at the beginning of the period, then \\( \lvert g_L - x_L \rvert < 0.03\\) again at the end of the period. 
+
+
+* [main compositional reachability](airplane-main.drh)
+* [left compositional inductive 1](airplane-ail.drh) (k = 2)
+* [left compositional inductive 2](airplane-ail-ind.drh) (k = 2)
