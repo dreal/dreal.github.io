@@ -9,7 +9,8 @@ image:
   thumb:
 ads: false
 ---
-
+For a complete list please check the [benchmark directory][benchmark directory]. 
+[benchmark directory]: https://github.com/dreal/dreal3/tree/master/benchmarks
  - [Atrial Fibrillation Model](./atrial_fibrillation)
  - [Prostate Cancer](./prostate_cancer)
  - [Quadcopter Dynamics](./quad)
