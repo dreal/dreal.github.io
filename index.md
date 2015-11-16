@@ -45,9 +45,10 @@ is satisfied. The tool is based on Interval Constraint Propagation in
 the DPLL(T) framework to handle nonlinearity, and is designed to be
 easily extendable with other numerical algorithms.
 
-**dReal** has benefited much from the following tools: [realpaver][realpaver],
+**dReal** has benefited much from the following tools: [realpaver][realpaver], [ibex][ibex],
 [opensmt][opensmt], [minisat][minisat], and [capd][capd].
 
+[ibex]: http://www.ibex-lib.org/
 [realpaver]: http://pagesperso.lina.univ-nantes.fr/~granvilliers-l/realpaver/
 [opensmt]: http://code.google.com/p/opensmt/
 [minisat]: http://minisat.se/
