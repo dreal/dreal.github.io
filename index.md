@@ -35,7 +35,7 @@ a proof of unsatisfiability; when "\\(\delta\\)-sat", it provides a
 solution such that a \\(\delta\\)-perturbed form of the input formula
 is satisfied. 
 
-**dReal** has benefited greatly from the following tools: [realpaver][realpaver], [ibex][ibex],
+We have benefited greatly from the following tools: [realpaver][realpaver], [ibex][ibex],
 [opensmt][opensmt], [minisat][minisat], and [capd][capd].
 
 [ibex]: http://www.ibex-lib.org/
