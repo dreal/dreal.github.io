@@ -12,9 +12,7 @@ title: ""
 
 **dReal** is an automated reasoning engine. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling problems that involve a wide range of nonlinear real functions. dReal implements the framework of \\(\delta\\)-complete decision procedures.
 
-Logic formulas over the real numbers are both very expressive and hard to solve when nonlinear functions are used in the formulas. \\(\delta\\)-Complete decision procedures provided a new general
-framework for handling nonlinear logic formulas over the reals. We say a
-decision procedure is \\(\delta\\)-complete for a set \\(S\\) of formulas, where \\(\delta\\) is an arbitrary positive rational number,
+\\(\delta\\)-Complete decision procedures is a general framework for solving nonlinear logic formulas over the real numbers, which bypasses the well-known difficulty of undecidability in nonlinear theories over the reals. A decision procedure is \\(\delta\\)-complete for a set \\(S\\) of formulas, where \\(\delta\\) is an arbitrary positive rational number,
 if for any \\(\varphi\\) from \\(S\\) the procedure returns one of the
 following answers:
 
