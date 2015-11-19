@@ -10,17 +10,11 @@ title: ""
 {% endfor %}
 </div><!-- /.tiles -->
 
+**dReal** is an automated reasoning engine. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling problems that involve a wide range of nonlinear real functions. dReal implements the framework of \\(\delta\\)-complete decision procedures.
 
-**dReal** is an SMT solver for first-order logic formulas over the reals. It can handle formulas with a wide range of nonlinear real functions in the framework of
-\\(\delta\\)-complete decision procedures.
-
-SMT formulas over the real numbers can encode a wide range of problems
-in theorem proving and formal verification. Such formulas are very
-hard to solve when nonlinear functions are involved.
-\\(\delta\\)-Complete decision procedures provided a new general
-framework for handling nonlinear SMT problems over the reals. We say a
-decision procedure is \\(\delta\\)-complete for a set \\(S\\) of SMT
-formulas, where \\(\delta\\) is an arbitrary positive rational number,
+Logic formulas over the real numbers are both very expressive and hard to solve when nonlinear functions are used in the formulas. \\(\delta\\)-Complete decision procedures provided a new general
+framework for handling nonlinear logic formulas over the reals. We say a
+decision procedure is \\(\delta\\)-complete for a set \\(S\\) of formulas, where \\(\delta\\) is an arbitrary positive rational number,
 if for any \\(\varphi\\) from \\(S\\) the procedure returns one of the
 following answers:
 
@@ -34,18 +28,16 @@ Essentially, we allow such a procedure to give answers with one-sided,
 \\(\delta\\)-complete decision procedures can fully exploit the power
 of scalable numerical algorithms to solve nonlinear problems, and at
 the same time provide suitable correctness guarantees for many
-correctness-critical problems. (See references below.)
+correctness-critical problems.
 
 **dReal** returns "unsat" or
 "\\(\delta\\)-sat" on input formulas, where \\(\delta\\) can be
 specified by the user. When the answer is "unsat", **dReal** produces
 a proof of unsatisfiability; when "\\(\delta\\)-sat", it provides a
 solution such that a \\(\delta\\)-perturbed form of the input formula
-is satisfied. The tool is based on Interval Constraint Propagation in
-the DPLL(T) framework to handle nonlinearity, and is designed to be
-easily extendable with other numerical algorithms.
+is satisfied. 
 
-**dReal** has benefited much from the following tools: [realpaver][realpaver], [ibex][ibex],
+**dReal** has benefited greatly from the following tools: [realpaver][realpaver], [ibex][ibex],
 [opensmt][opensmt], [minisat][minisat], and [capd][capd].
 
 [ibex]: http://www.ibex-lib.org/
