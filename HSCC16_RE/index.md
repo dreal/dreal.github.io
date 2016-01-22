@@ -63,12 +63,12 @@ brew install dreal
 
 ## Instructions for extracting the corresponding results
 
-First, please download [this archive file]() which provides the data
-files required to reproduce our experiments in the
-paper. Uncompressing the archive file, you will see the three
+First, please download
+[this archive file](/HSCC16_RE/hscc_re.tar.gz)
+which provides the data files required to reproduce our experiments in
+the paper. Uncompressing the archive file, you will see the three
 subdirectories -- `airplane` (for section 6.1), `water` (for section
-6.2), `thermo` (for section 6.3) under HSCC_RE_92
-directory.
+6.2), `thermo` (for section 6.3) under HSCC_RE_92 directory.
 
 
 ### Section 6.1 Turning an Airplane
