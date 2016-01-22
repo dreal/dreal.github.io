@@ -10,15 +10,16 @@ This document explains the steps to reproduce the results that we
 reported in our submission to HSCC'16, "SMT-Based Analysis of
 Virtually Synchronous Distributed Hybrid Systems" written by
 [Kyungmin Bae][kyungmin], [Peter Olveczky][peter],
-[Soonho Kong][soonho], and [Sicun Gao][sicun].
+[Soonho Kong][soonho], [Sicun Gao][sicun], and [Edmund Clarke][emc].
 
 [kyungmin]: http://www.cs.cmu.edu/~kbae
 [peter]: http://folk.uio.no/peterol
 [soonho]: http://www.cs.cmu.edu/~soonhok
 [sicun]: https://scungao.github.io
+[emc]: http://www.cs.cmu.edu/~emc
 
 
-## Elements of the paper are included in the RP
+## Elements of the paper included in the RP
 
 There are three case studies in Section 6 of our paper -- "Turning an
 Airplane" (Section 6.1), "Networked Water Tank Controllers" (Section
@@ -63,8 +64,7 @@ brew install dreal
 
 ## Instructions for extracting the corresponding results
 
-First, please download
-[this archive file](/HSCC16_RE/hscc_re.tar.gz)
+First, please download [this archive file](/HSCC16_RE/hscc_re.tar.gz)
 which provides the data files required to reproduce our experiments in
 the paper. Uncompressing the archive file, you will see the three
 subdirectories -- `airplane` (for section 6.1), `water` (for section
@@ -89,13 +89,16 @@ dReach -k 20 airplane-main.drh
 ```
 
 Experiment 3: If $abs(g_L−v_L) < 0.03$ at the beginning of the period,
-then $abs(g_L−x_L) < 0.05$ during the period for the aileron. Run the following command:
+then $abs(g_L−x_L) < 0.05$ during the period for the aileron. Run the
+following command:
 
 ```bash
 dReach -k 2 airplane-ail.drh
 ```
+
 Experiment 4: If $abs(g_L−v_L) < 0.03$ at the beginning of the period,
-then $abs(g_L−x_L) < 0.03$ again at the end of the period. Run the following command:
+then $abs(g_L−x_L) < 0.03$ again at the end of the period. Run the
+following command:
 
 ```bash
 dReach -k 2 airplane-ail-ind.drh
@@ -103,40 +106,41 @@ dReach -k 2 airplane-ail-ind.drh
 
 ### Section 6.2 Networked Water Tank Controllers
 
-Experiment 1:
-If $x_i \in I'$ at the beginning of each period, then $x_i \in I'$ at the
-end of the period, provided that $x_{i−1}$, $x_{i+1} \in I$ always holds,
-where $\epsilon = 0.003$. Run the following command:
+Experiment 1: If $x_i \in I'$ at the beginning of each period, then
+$x_i \in I'$ at the end of the period, provided that $x_{i−1}$,
+$x_{i+1} \in I$ always holds, where $\epsilon = 0.003$. Run the
+following command:
 
 ```bash
 dReal --precision 0.003 water-comp-OK.smt2
 ```
 
-Experiment 2: If $x_i \in I'$ at the beginning of each round, then $x_i
-\in I$ always holds for sampling stage.  Run the following command:
+Experiment 2: If $x_i \in I'$ at the beginning of each round, then
+$x_i \in I$ always holds for sampling stage.  Run the following
+command:
 
 ```bash
 dReal water-comp-OK_1_0.smt2
 ```
 
-Experiment 3: If $x_i \in I'$ at the beginning of each round, then $x_i
-\in I$ always holds for response stage.  Run the following command:
+Experiment 3: If $x_i \in I'$ at the beginning of each round, then
+$x_i \in I$ always holds for response stage.  Run the following
+command:
 
 ```bash
 dReal water-comp-OK_2_0.smt2
 ```
 
-Experiment 4: If $x_i \in I'$ at the beginning of each round, then $x_i
-\in I$ always holds for wait stage.
-Run the following command:
+Experiment 4: If $x_i \in I'$ at the beginning of each round, then
+$x_i \in I$ always holds for wait stage.  Run the following command:
 
 ```bash
 dReal water-comp-OK_3_0.smt2
 ```
 
-Experiment 5:
-Find counterexample for the condition of `water-comp-OK.smt2`, when $\epsilon = 0.15$.
-Run the following command:
+Experiment 5: Find a counterexample for the condition of
+`water-comp-OK.smt2`, when $\epsilon = 0.15$.  Run the following
+command:
 
 ```bash
 dReal --precision 0.15  water-comp-ERR.smt2
@@ -145,31 +149,34 @@ dReal --precision 0.15  water-comp-ERR.smt2
 
 ### Section 6.3 Networked Thermostat Controllers
 
-Experiment 1: if $x_i \in I'$ at the beginning of each period, then $x_i
-\in I'$ at the end of the period, provided that $x_{i−1}, x_{i+1} \in I$
-always holds, where $\epsilon = 0.002$. Run the following command:
+Experiment 1: if $x_i \in I'$ at the beginning of each period, then
+$x_i \in I'$ at the end of the period, provided that $x_{i−1}, x_{i+1}
+\in I$ always holds, where $\epsilon = 0.002$. Run the following
+command:
 
 ```bash
 dReal --precision 0.002 thermostat-comp-OK.smt2
 ```
 
-Experiment 2: If $x_i \in I'$ at the beginning of each round, then $x_i
- \in I$ always holds for sampling stage. Run the following command:
+Experiment 2: If $x_i \in I'$ at the beginning of each round, then
+ $x_i \in I$ always holds for sampling stage. Run the following
+ command:
 
 ```bash
 dReal thermostat-comp-OK_1_0.smt2
 ```
 
-Experiment 3: If $x_i \in I'$ at the beginning of each round, then $x_i
-\in I$ always holds for response stage. Run the following command:
+Experiment 3: If $x_i \in I'$ at the beginning of each round, then
+$x_i \in I$ always holds for response stage. Run the following
+command:
 
 ```bash
 dReal thermostat-comp-OK_2_0.smt2
 
 ```
 
-Experiment 4: If $x_i \in I'$ at the beginning of each round, then $x_i
-\in I$ always holds for wait stage.  Run the following command:
+Experiment 4: If $x_i \in I'$ at the beginning of each round, then
+$x_i \in I$ always holds for wait stage.  Run the following command:
 
 ```bash
 dReal thermostat-comp-OK_3_0.smt2

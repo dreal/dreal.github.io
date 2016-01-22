@@ -16,9 +16,9 @@
 reported in our submission to HSCC&#8217;16, &#8220;SMT-Based Analysis of
 Virtually Synchronous Distributed Hybrid Systems&#8221; written by
 <a href="http://www.cs.cmu.edu/~kbae">Kyungmin Bae</a>, <a href="http://folk.uio.no/peterol">Peter Olveczky</a>,
-<a href="http://www.cs.cmu.edu/~soonhok">Soonho Kong</a>, and <a href="https://scungao.github.io">Sicun Gao</a>.</p>
+<a href="http://www.cs.cmu.edu/~soonhok">Soonho Kong</a>, <a href="https://scungao.github.io">Sicun Gao</a>, and <a href="http://www.cs.cmu.edu/~emc">Edmund Clarke</a>.</p>
 
-<h2 id="elementsofthepaperareincludedintherp">Elements of the paper are included in the RP</h2>
+<h2 id="elementsofthepaperincludedintherp">Elements of the paper included in the RP</h2>
 
 <p>There are three case studies in Section 6 of our paper &#8211; &#8220;Turning an
 Airplane&#8221; (Section 6.1), &#8220;Networked Water Tank Controllers&#8221; (Section
@@ -60,8 +60,7 @@ brew install dreal
 
 <h2 id="instructionsforextractingthecorrespondingresults">Instructions for extracting the corresponding results</h2>
 
-<p>First, please download
-<a href="/HSCC16_RE/hscc_re.tar.gz">this archive file</a>
+<p>First, please download <a href="/HSCC16_RE/hscc_re.tar.gz">this archive file</a>
 which provides the data files required to reproduce our experiments in
 the paper. Uncompressing the archive file, you will see the three
 subdirectories &#8211; <code>airplane</code> (for section 6.1), <code>water</code> (for section
@@ -83,77 +82,83 @@ ailerons and rudder. Run the following command:</p>
 </code></pre>
 
 <p>Experiment 3: If <span class="math">\(abs(g_L−v_L) < 0.03\)</span> at the beginning of the period,
-then <span class="math">\(abs(g_L−x_L) < 0.05\)</span> during the period for the aileron. Run the following command:</p>
+then <span class="math">\(abs(g_L−x_L) < 0.05\)</span> during the period for the aileron. Run the
+following command:</p>
 
 <pre><code class="bash">dReach -k 2 airplane-ail.drh
 </code></pre>
 
 <p>Experiment 4: If <span class="math">\(abs(g_L−v_L) < 0.03\)</span> at the beginning of the period,
-then <span class="math">\(abs(g_L−x_L) < 0.03\)</span> again at the end of the period. Run the following command:</p>
+then <span class="math">\(abs(g_L−x_L) < 0.03\)</span> again at the end of the period. Run the
+following command:</p>
 
 <pre><code class="bash">dReach -k 2 airplane-ail-ind.drh
 </code></pre>
 
 <h3 id="section6.2networkedwatertankcontrollers">Section 6.2 Networked Water Tank Controllers</h3>
 
-<p>Experiment 1:
-If <span class="math">\(x_i \in I'\)</span> at the beginning of each period, then <span class="math">\(x_i \in I'\)</span> at the
-end of the period, provided that <span class="math">\(x_{i−1}\)</span>, <span class="math">\(x_{i+1} \in I\)</span> always holds,
-where <span class="math">\(\epsilon = 0.003\)</span>. Run the following command:</p>
+<p>Experiment 1: If <span class="math">\(x_i \in I'\)</span> at the beginning of each period, then
+<span class="math">\(x_i \in I'\)</span> at the end of the period, provided that <span class="math">\(x_{i−1}\)</span>,
+<span class="math">\(x_{i+1} \in I\)</span> always holds, where <span class="math">\(\epsilon = 0.003\)</span>. Run the
+following command:</p>
 
 <pre><code class="bash">dReal --precision 0.003 water-comp-OK.smt2
 </code></pre>
 
-<p>Experiment 2: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
-\in I\)</span> always holds for sampling stage. Run the following command:</p>
+<p>Experiment 2: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+<span class="math">\(x_i \in I\)</span> always holds for sampling stage. Run the following
+command:</p>
 
 <pre><code class="bash">dReal water-comp-OK_1_0.smt2
 </code></pre>
 
-<p>Experiment 3: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
-\in I\)</span> always holds for response stage. Run the following command:</p>
+<p>Experiment 3: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+<span class="math">\(x_i \in I\)</span> always holds for response stage. Run the following
+command:</p>
 
 <pre><code class="bash">dReal water-comp-OK_2_0.smt2
 </code></pre>
 
-<p>Experiment 4: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
-\in I\)</span> always holds for wait stage.
-Run the following command:</p>
+<p>Experiment 4: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+<span class="math">\(x_i \in I\)</span> always holds for wait stage. Run the following command:</p>
 
 <pre><code class="bash">dReal water-comp-OK_3_0.smt2
 </code></pre>
 
-<p>Experiment 5:
-Find counterexample for the condition of <code>water-comp-OK.smt2</code>, when <span class="math">\(\epsilon = 0.15\)</span>.
-Run the following command:</p>
+<p>Experiment 5: Find a counterexample for the condition of
+<code>water-comp-OK.smt2</code>, when <span class="math">\(\epsilon = 0.15\)</span>. Run the following
+command:</p>
 
 <pre><code class="bash">dReal --precision 0.15  water-comp-ERR.smt2
 </code></pre>
 
 <h3 id="section6.3networkedthermostatcontrollers">Section 6.3 Networked Thermostat Controllers</h3>
 
-<p>Experiment 1: if <span class="math">\(x_i \in I'\)</span> at the beginning of each period, then <span class="math">\(x_i
-\in I'\)</span> at the end of the period, provided that <span class="math">\(x_{i−1}, x_{i+1} \in I\)</span>
-always holds, where <span class="math">\(\epsilon = 0.002\)</span>. Run the following command:</p>
+<p>Experiment 1: if <span class="math">\(x_i \in I'\)</span> at the beginning of each period, then
+<span class="math">\(x_i \in I'\)</span> at the end of the period, provided that <span class="math">\(x_{i−1}, x_{i+1}
+\in I\)</span> always holds, where <span class="math">\(\epsilon = 0.002\)</span>. Run the following
+command:</p>
 
 <pre><code class="bash">dReal --precision 0.002 thermostat-comp-OK.smt2
 </code></pre>
 
-<p>Experiment 2: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
- \in I\)</span> always holds for sampling stage. Run the following command:</p>
+<p>Experiment 2: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+ <span class="math">\(x_i \in I\)</span> always holds for sampling stage. Run the following
+ command:</p>
 
 <pre><code class="bash">dReal thermostat-comp-OK_1_0.smt2
 </code></pre>
 
-<p>Experiment 3: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
-\in I\)</span> always holds for response stage. Run the following command:</p>
+<p>Experiment 3: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+<span class="math">\(x_i \in I\)</span> always holds for response stage. Run the following
+command:</p>
 
 <pre><code class="bash">dReal thermostat-comp-OK_2_0.smt2
 
 </code></pre>
 
-<p>Experiment 4: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then <span class="math">\(x_i
-\in I\)</span> always holds for wait stage. Run the following command:</p>
+<p>Experiment 4: If <span class="math">\(x_i \in I'\)</span> at the beginning of each round, then
+<span class="math">\(x_i \in I\)</span> always holds for wait stage. Run the following command:</p>
 
 <pre><code class="bash">dReal thermostat-comp-OK_3_0.smt2
 </code></pre>
