@@ -10,7 +10,7 @@ title: ""
 {% endfor %}
 </div><!-- /.tiles -->
 
-**dReal** is an automated reasoning tool. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling a wide range of nonlinear real functions. **dReal** implements the framework of \\(\delta\\)-complete decision procedures.
+**dReal** is an automated reasoning tool. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling problems that involve a wide range of nonlinear real functions. **dReal** implements the framework of \\(\delta\\)-complete decision procedures.
 
 \\(\delta\\)-Complete decision procedures bypass well-known theoretical difficulties in nonlinear theories over the reals. We say a decision procedure is \\(\delta\\)-complete for a set \\(S\\) of formulas, where \\(\delta\\) is an arbitrary positive rational number,
 if for any \\(\varphi\\) from \\(S\\) the procedure returns one of the
@@ -23,10 +23,7 @@ Here, \\(\varphi^{\delta}\\) is a syntactic variant of \\(\varphi\\)
 that encodes a notion of numerical perturbation on logic formulas.
 Essentially, we allow such a procedure to give answers with one-sided,
 \\(\delta\\)-bounded errors. With this relaxation,
-\\(\delta\\)-complete decision procedures can fully exploit the power
-of scalable numerical algorithms to solve nonlinear problems, and at
-the same time provide suitable correctness guarantees for many
-correctness-critical problems.
+\\(\delta\\)-complete decision procedures can fully exploit the power of numerical approximations without losing formal correctness guarantees. 
 
 **dReal** returns "unsat" or
 "\\(\delta\\)-sat" on input formulas, where \\(\delta\\) can be
