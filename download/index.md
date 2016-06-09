@@ -14,7 +14,7 @@ Ubuntu/Debian
 -------------
 
 We provide a PPA for Ubuntu 12.04 LTS (precise), 14.04 LTS (trusty),
-15.04 (vivid), and 15.10 (wily). At this time, it only supports amd64
+15.10 (wily), and 16.10(xenial). At this time, it only supports amd64
 architectures. Run the following commands on a terminal to install
 dReal:
 
