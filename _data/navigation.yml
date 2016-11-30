@@ -11,10 +11,6 @@
 - title:      Benchmarks
   url:        /benchmarks/
 
-- title:      Publication
-  url:        /publication/
-  excerpt:
-
 - title:      Download
   url:        /download/
   excerpt:    "precompiled binaries"
