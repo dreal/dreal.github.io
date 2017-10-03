@@ -8,6 +8,7 @@ image:
   teaser:
   thumb:
 ads: false
+title: ""
 ---
 
 
