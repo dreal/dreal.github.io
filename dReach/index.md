@@ -49,7 +49,7 @@ answers:
  - "\\(\delta\\)-unsafe": \\(H^{\delta}\\) can reach \\({\mathsf{unsafe}}^{\delta}\\) in \\(n\\) steps within time \\(T\\).
 
 {:.center style="text-align:center;"}
-![dReach Big Picture](https://dreal.github.io/dReach/images/dReach.svg)
+![dReach Big Picture](dReach/images/dReach.svg)
 
 Note that these answers are not weaker than the precise ones. When
 "safe" is the answer, we know for certain that \\(H\\) does not reach
