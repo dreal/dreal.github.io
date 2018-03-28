@@ -15,11 +15,6 @@
   url:        /download/
   excerpt:    "precompiled binaries"
 
-- title:      Try online
-  url:        /try/
-  excerpt:    "in your web browser"
-  image:
-
 - title:      People
   url:        https://github.com/orgs/dreal/people
   excerpt:    "Developers and contributors"
