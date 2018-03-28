@@ -47,10 +47,7 @@ Let's consider the following example which slighly modifies a formula
 from the [Flyspeck][flyspeck] project benchmarks:
 
 \\[
-\exists^{[3.0,3.14]}x_1. \exists^{[-7.0,5.0]}x_2.
-2 \times 3.14159265 - 2 x_1
-\arcsin \left(\cos 0.797\times \sin \left(\frac{3.14159265}{x_1}\right)\right) \le
-- 0.591 - 0.0331 x_2 + 0.506 + 1.0
+\exists^{[3.0,3.14]}x_1. \exists^{[-7.0,5.0]}x_2. 2 \times 3.14159265 - 2 x_1 \arcsin \left(\cos 0.797\times \sin \left(\frac{3.14159265}{x_1}\right)\right) \le - 0.591 - 0.0331 x_2 + 0.506 + 1.0
 \\]
 
 
