@@ -10,35 +10,17 @@ title: ""
 {% endfor %}
 </div><!-- /.tiles -->
 
-**dReal** is an automated reasoning tool. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling problems that involve a wide range of nonlinear real functions. **dReal** implements the framework of \\(\delta\\)-complete decision procedures.
+**dReal** is an automated reasoning tool. It focuses on solving problems that can be encoded as first-order logic formulas over the real numbers. Its special strength is in handling problems that involve a wide range of nonlinear real functions. **dReal** implements the framework of \\(\delta\\)-complete decision procedures (see [[GAC'12]]).
 
-\\(\delta\\)-Complete decision procedures bypass well-known theoretical difficulties in nonlinear theories over the reals. We say a decision procedure is \\(\delta\\)-complete for a set \\(S\\) of formulas, where \\(\delta\\) is an arbitrary positive rational number,
-if for any \\(\varphi\\) from \\(S\\) the procedure returns one of the
-following answers:
-
- - "unsat": \\(\varphi\\) is unsatisfiable.
- - "\\(\delta\\)-sat": \\(\varphi^{\delta}\\) is satisfiable.
-
-Here, \\(\varphi^{\delta}\\) is a syntactic variant of \\(\varphi\\)
-that encodes a notion of numerical perturbation on logic formulas.
-Essentially, we allow such a procedure to give answers with one-sided,
-\\(\delta\\)-bounded errors. With this relaxation,
-\\(\delta\\)-complete decision procedures can fully exploit the power of numerical approximations without losing formal correctness guarantees. 
+[GAC'12]: https://scungao.github.io/papers/delta_complete_decision_procedures.pdf
 
 **dReal** returns "unsat" or
-"\\(\delta\\)-sat" on input formulas, where \\(\delta\\) can be
-specified by the user. When the answer is "unsat", **dReal** produces
-a proof of unsatisfiability; when "\\(\delta\\)-sat", it provides a
-solution such that a \\(\delta\\)-perturbed form of the input formula
-is satisfied. 
+"\\(\delta\\)-sat" on input formulas, where \\(\delta\\) is a numerical error bound specified by the user. When the answer is "unsat", **dReal** guarantees that the formula is unsatisfiable. When the answer is "\\(\delta\\)-sat", it returns a set of solutions that all satisfy a \\(\delta\\)-perturbed form of the input formula. 
 
-We have benefited greatly from the following tools: [realpaver][realpaver], [ibex][ibex],
-[opensmt][opensmt], [minisat][minisat], and [capd][capd].
+We have benefited greatly from various tools, including [ibex][ibex], [picosat][picosat], and [capd][capd].
 
 [ibex]: http://www.ibex-lib.org/
-[realpaver]: http://pagesperso.lina.univ-nantes.fr/~granvilliers-l/realpaver/
-[opensmt]: http://code.google.com/p/opensmt/
-[minisat]: http://minisat.se/
+[picosat]: http://fmv.jku.at/picosat/
 [capd]: http://capd.ii.uj.edu.pl/
 
 ## Example
