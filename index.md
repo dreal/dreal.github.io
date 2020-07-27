@@ -47,7 +47,7 @@ following SMT2 formula ([172.smt2][172.smt2]):
 (assert (<= -7.0 x2))
 (assert (<= x2 5.0))
 (assert (<= (- (* 2.0 3.14159265) (* 2.0 (* x1 (arcsin (* (cos 0.797) (sin (/ 3.14159265 x1)))))))
-            (+ (- 0.591 (* 0.0331 x2)) (+ 0.506 1.0))))
+            (+ (- (- 0.591) (* 0.0331 x2)) (+ 0.506 1.0))))
 (check-sat)
 (exit)
 {% endhighlight %}
